@@ -3,8 +3,6 @@ import * as ReactDOM from 'react-dom'
 import { createStore } from 'redux'
 import { Provider } from 'react-redux'
 
-import './index.scss'
-
 import reducer from './reducers/reducer'
 import InitiativeTracker from './components/InitiativeTracker';
 
