@@ -1,6 +1,5 @@
-import { List } from 'immutable'
-import { Initiative } from './Initiative'
+import { Map } from 'immutable'
 
-export interface AppState {
-  initiatives: List<Initiative>
+export interface AppState extends Map<String, any> {
+
 }

@@ -1,4 +1,5 @@
 export interface Initiative {
+  name: string,
   value: number,
-  name: string
+  health: number
 }

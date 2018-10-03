@@ -11,12 +11,13 @@ export default (props: Props) => {
     return null
   }
 
-  const { value, name } = props.initiative
+  const { value, name, health } = props.initiative
 
   return (
     <div>
       <input type='text' value={name} readOnly />
       <input type='text' value={value} readOnly />
+      <input type='text' value={health} readOnly />
     </div>
   )
 }
