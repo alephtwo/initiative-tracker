@@ -1,7 +1,7 @@
 import { Action, Reducer } from 'redux'
 import { List, Map } from 'immutable'
-import { AppState } from '../interfaces/AppState';
-import { Initiative } from '../interfaces/Initiative';
+import { AppState } from '../interfaces/AppState'
+import { Initiative } from '../interfaces/Initiative'
 
 const initialState: AppState = {
   initiatives: List<Initiative>([
@@ -9,6 +9,6 @@ const initialState: AppState = {
   ])
 }
 
-export default (state = initialState, action: Action) : AppState => {
+export default (state = initialState, action: Action): AppState => {
   return state
 }

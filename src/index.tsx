@@ -4,7 +4,7 @@ import { createStore } from 'redux'
 import { Provider } from 'react-redux'
 
 import reducer from './reducers/reducer'
-import InitiativeTracker from './components/InitiativeTracker';
+import InitiativeTracker from './components/InitiativeTracker'
 
 const app = (
   <Provider store={createStore(reducer)}>

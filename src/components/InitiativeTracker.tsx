@@ -1,17 +1,17 @@
 import * as React from 'react'
-import { connect } from 'react-redux';
-import { AppState } from '../interfaces/AppState';
-import { List } from 'immutable';
-import InitiativeBlock from './InitiativeBlock';
-import { Initiative } from '../interfaces/Initiative';
+import { connect } from 'react-redux'
+import { AppState } from '../interfaces/AppState'
+import { List } from 'immutable'
+import InitiativeBlock from './InitiativeBlock'
+import { Initiative } from '../interfaces/Initiative'
 
 interface Props {
   initiatives: List<Initiative>
 }
 
 const InitiativeTracker = (props: Props) => (
-  <div className="container">
-    <div className="card-deck">
+  <div className='container'>
+    <div className='card-deck'>
       {generateBlocks(props.initiatives)}
     </div>
   </div>
