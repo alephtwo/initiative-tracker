@@ -21,8 +21,8 @@ const InitiativeTracker = (props: Props) => (
 const generateBlocks = (initiatives: List<Initiative>) =>
   initiatives.map(generateBlock).toJS()
 
-const generateBlock = (initiative: Initiative, key: number) =>
-  <InitiativeBlock key={key} initiative={initiative} />
+const generateBlock = (initiative: Initiative) =>
+  <InitiativeBlock key={initiative.id} initiative={initiative} />
 
 const mapStateToProps = (state: AppState) =>
   ({ initiatives: state.get('initiatives') })

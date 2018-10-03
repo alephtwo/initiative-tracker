@@ -9,10 +9,12 @@
     "lint": "tslint --project ."
   },
   "dependencies": {
+    "@types/uuid": "^3.4.4",
     "immutable": "^3.8.2",
     "react": "^16.5.2",
     "react-redux": "^5.0.7",
-    "redux": "^4.0.0"
+    "redux": "^4.0.0",
+    "uuid": "^3.3.2"
   },
   "devDependencies": {
     "@types/react": "^16.4.14",
