@@ -15,15 +15,31 @@ const initialState: AppState = Map({
   }])
 })
 
-export default (state = initialState, action: Action): AppState => {
+interface UpdateInitiativeAction extends Action {
+  id: string,
+  extensions: object
+}
+
+export default (state = initialState, action: UpdateInitiativeAction): AppState => {
   switch (action.type) {
     case 'ADD_BLOCK':
-      return state.updateIn(['initiatives'], list => list.push({
-        id: uuidv4(),
-        name: 'Sir Bearington',
-        value: 0,
-        health: 0
-      }))
+      return addBlock(state)
+    case 'UPDATE_INITIATIVE':
+      return updateInitiative(state, action.id, action.extensions)
   }
   return state
 }
+
+const addBlock = (state: AppState): AppState =>
+  state.updateIn(['initiatives'], (list: List<Initiative>) => list.push({
+    id: uuidv4(),
+    name: 'Sir Bearington',
+    value: 0,
+    health: 0
+  }))
+
+const updateInitiative = (state: AppState, id: string, overrides: object): AppState =>
+  state.updateIn(['initiatives'], (list: List<Initiative>) => {
+    const index = list.findIndex((x: Initiative) => x.id === id)
+    return list.updateIn([index], x => Object.assign({}, x, overrides))
+  })

@@ -3,10 +3,17 @@ import { Initiative } from '../interfaces/Initiative'
 import { isUndefined } from 'util'
 
 interface Props {
-  initiative: Initiative | undefined
+  announceValue: Function,
+  initiative: Initiative
 }
 
 export default (props: Props) => {
+  const announceAttribute = (attribute: string) => {
+    return (event: React.ChangeEvent<HTMLInputElement>) => {
+      props.announceValue({ [attribute]: event.target.value })
+    }
+  }
+
   if (isUndefined(props.initiative)) {
     return null
   }
@@ -15,9 +22,18 @@ export default (props: Props) => {
 
   return (
     <div>
-      <input type='text' value={name} readOnly />
-      <input type='text' value={value} readOnly />
-      <input type='text' value={health} readOnly />
+      <input
+        type='text'
+        value={name}
+        onChange={announceAttribute('name')} />
+      <input
+        type='text'
+        value={value}
+        onChange={announceAttribute('value')} />
+      <input
+        type='text'
+        value={health}
+        onChange={announceAttribute('health')} />
     </div>
   )
 }
