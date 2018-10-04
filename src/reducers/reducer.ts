@@ -1,4 +1,4 @@
-import { Action, Reducer } from 'redux'
+import { Action } from 'redux'
 import { List, Map } from 'immutable'
 import { AppState } from '../interfaces/AppState'
 import { Initiative } from '../interfaces/Initiative'

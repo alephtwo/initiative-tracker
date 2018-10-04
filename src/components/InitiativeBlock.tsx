@@ -1,6 +1,7 @@
 import * as React from 'react'
 import { Initiative } from '../interfaces/Initiative'
 import { isUndefined } from 'util'
+import ClickText from './ClickText'
 
 interface Props {
   announceValue: Function,
@@ -8,10 +9,8 @@ interface Props {
 }
 
 export default (props: Props) => {
-  const announceAttribute = (attribute: string) => {
-    return (event: React.ChangeEvent<HTMLInputElement>) => {
-      props.announceValue({ [attribute]: event.target.value })
-    }
+  const generateAnnounceValue = (attribute: string) => (value: string) => {
+    props.announceValue({ [attribute]: value })
   }
 
   if (isUndefined(props.initiative)) {
@@ -22,18 +21,15 @@ export default (props: Props) => {
 
   return (
     <div>
-      <input
-        type='text'
+      <ClickText
         value={name}
-        onChange={announceAttribute('name')} />
-      <input
-        type='text'
+        announceValue={generateAnnounceValue('name')} />
+      <ClickText
         value={value}
-        onChange={announceAttribute('value')} />
-      <input
-        type='text'
+        announceValue={generateAnnounceValue('value')} />
+      <ClickText
         value={health}
-        onChange={announceAttribute('health')} />
+        announceValue={generateAnnounceValue('health')} />
     </div>
   )
 }
