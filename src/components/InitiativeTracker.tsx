@@ -5,22 +5,27 @@ import { List } from 'immutable'
 import InitiativeBlock from './InitiativeBlock'
 import { Initiative } from '../interfaces/Initiative'
 import { Dispatch } from 'redux'
+import { Paper, Grid, Theme, withStyles } from '@material-ui/core'
 
 interface Props extends DispatchProp {
   initiatives: List<Initiative>
 }
 
 const InitiativeTracker = (props: Props) => (
-  <div className='container'>
-    <a href='#' onClick={() => props.dispatch({ type: 'ADD_BLOCK' })}>
-      Add
-    </a>
+  <Grid container spacing={8}>
+    <Grid item xs={12}>
+      <Paper>
+        <a href='#' onClick={() => props.dispatch({ type: 'ADD_BLOCK' })}>
+          Add
+        </a>
 
-    <a href='#' onClick={() => props.dispatch({ type: 'SORT_BY_INITIATIVE' })}>
-      Sort
-    </a>
+        <a href='#' onClick={() => props.dispatch({ type: 'SORT_BY_INITIATIVE' })}>
+          Sort
+        </a>
+      </Paper>
+    </Grid>
     {generateBlocks(props.dispatch, props.initiatives)}
-  </div>
+  </Grid>
 )
 
 const generateBlocks = (dispatch: Dispatch, initiatives: List<Initiative>) =>
