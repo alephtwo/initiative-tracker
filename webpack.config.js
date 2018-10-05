@@ -6,16 +6,6 @@ const typescript = {
   loader: 'awesome-typescript-loader'
 }
 
-const bootstrap = {
-  test: /\.(scss)$/,
-  use: [
-    { loader: 'style-loader' },
-    { loader: 'css-loader' },
-    { loader: 'postcss-loader' },
-    { loader: 'sass-loader' }
-  ]
-}
-
 const html = new HtmlWebpackPlugin({
   template: 'src/index.html'
 });
@@ -31,7 +21,7 @@ module.exports = {
     path: path.resolve(__dirname, 'dist')
   },
   module: {
-    rules: [typescript, bootstrap]
+    rules: [typescript]
   },
   plugins: [html]
 }
