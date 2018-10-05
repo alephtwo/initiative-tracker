@@ -8,10 +8,14 @@ interface Props {
   initiative: Initiative
 }
 
+const toNumber = (value: string) => parseInt(value || '0', 10)
+
 export default (props: Props) => {
-  const generateAnnounceValue = (attribute: string) => (value: string) => {
-    props.announceValue({ [attribute]: value })
-  }
+  const generateAnnounceValue =
+    (attribute: string, transformValue: Function = (a: any) => a) =>
+      (value: string) => {
+        props.announceValue({ [attribute]: transformValue(value) })
+      }
 
   if (isUndefined(props.initiative)) {
     return null
@@ -26,10 +30,10 @@ export default (props: Props) => {
         announceValue={generateAnnounceValue('name')} />
       <ClickText
         value={value}
-        announceValue={generateAnnounceValue('value')} />
+        announceValue={generateAnnounceValue('value', toNumber)} />
       <ClickText
         value={health}
-        announceValue={generateAnnounceValue('health')} />
+        announceValue={generateAnnounceValue('health', toNumber)} />
     </div>
   )
 }

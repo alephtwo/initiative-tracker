@@ -15,6 +15,10 @@ const InitiativeTracker = (props: Props) => (
     <a href='#' onClick={() => props.dispatch({ type: 'ADD_BLOCK' })}>
       Add
     </a>
+
+    <a href='#' onClick={() => props.dispatch({ type: 'SORT_BY_INITIATIVE' })}>
+      Sort
+    </a>
     {generateBlocks(props.dispatch, props.initiatives)}
   </div>
 )

@@ -26,6 +26,8 @@ export default (state = initialState, action: UpdateInitiativeAction): AppState 
       return addBlock(state)
     case 'UPDATE_INITIATIVE':
       return updateInitiative(state, action.id, action.extensions)
+    case 'SORT_BY_INITIATIVE':
+      return sortByInitiative(state)
   }
   return state
 }
@@ -43,3 +45,7 @@ const updateInitiative = (state: AppState, id: string, overrides: object): AppSt
     const index = list.findIndex((x: Initiative) => x.id === id)
     return list.updateIn([index], x => Object.assign({}, x, overrides))
   })
+
+const sortByInitiative = (state: AppState): AppState =>
+  state.updateIn(['initiatives'], (list: List<Initiative>) =>
+    list.sortBy((a: Initiative) => -a.value))
