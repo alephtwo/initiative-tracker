@@ -27,7 +27,7 @@ const generateBlocks = (dispatch: Dispatch, initiatives: List<Initiative>) =>
   initiatives.map((i: Initiative) => generateBlock(dispatch, i)).toJS()
 
 const generateBlock = (dispatch: Dispatch, initiative: Initiative) => {
-  const announceValue = (extensions: Object) => dispatch({
+  const announce = (extensions: Object) => dispatch({
     type: 'UPDATE_INITIATIVE',
     id: initiative.id,
     extensions
@@ -36,7 +36,7 @@ const generateBlock = (dispatch: Dispatch, initiative: Initiative) => {
   return (
     <InitiativeBlock
       key={initiative.id}
-      announceValue={announceValue}
+      announce={announce}
       initiative={initiative} />
   )
 }
