@@ -24,6 +24,8 @@ export default (state = initialState, action: UpdateInitiativeAction): AppState 
   switch (action.type) {
     case 'ADD_BLOCK':
       return addBlock(state)
+    case 'UPDATE_INITIATIVE':
+      return updateInitiative(state, action)
     case 'SORT_BY_INITIATIVE':
       return sortByInitiative(state)
   }
@@ -31,13 +33,20 @@ export default (state = initialState, action: UpdateInitiativeAction): AppState 
 }
 
 const addBlock = (state: AppState): AppState =>
-  state.updateIn(['initiatives'], (list: List<Initiative>) => list.push({
+  state.update('initiatives', (list: List<Initiative>) => list.push({
     id: uuidv4(),
     name: 'Sir Bearington',
     value: 0,
     health: 0
   }))
 
+const updateInitiative = (state: AppState, action: UpdateInitiativeAction): AppState => {
+  return state.update('initiatives', (list: List<Initiative>) => {
+    const index = list.findIndex((i: Initiative) => i.id === action.id)
+    return list.update(index, (i: Initiative) => Object.assign({}, i, action.extensions))
+  })
+}
+
 const sortByInitiative = (state: AppState): AppState =>
-  state.updateIn(['initiatives'], (list: List<Initiative>) =>
+  state.update('initiatives', (list: List<Initiative>) =>
     list.sortBy((a: Initiative) => -a.value))

@@ -12,23 +12,42 @@ interface Props extends StyledComponentProps {
 }
 
 const InitiativeBlock = (props: Props) => {
-  const { classes = {} } = props
+  const { classes = {}, announce } = props
   const { value, name, health } = props.initiative
+
+  const generateAnnounce = (attribute: string, transform = (a: any) => a) => {
+    return (event: React.ChangeEvent<HTMLInputElement>) => {
+      announce({ [attribute]: transform(event.target.value) })
+    }
+  }
+
+  const toNumber = (a: string) => {
+    if (!a) {
+      return ''
+    }
+
+    return Number(a)
+  }
 
   return (
     <Grid container spacing={16}>
       <Grid item xs={6}>
         <Paper className={classes.paper}>
           <TextField
+            onChange={generateAnnounce('name')}
             className={classes.textField}
             label='Name'
             value={name} />
           <TextField
             className={classes.textField}
+            onChange={generateAnnounce('value', toNumber)}
+            type='number'
             label='Initiative'
             value={value} />
           <TextField
             className={classes.textField}
+            onChange={generateAnnounce('health', toNumber)}
+            type='number'
             label='Health'
             value={health} />
         </Paper>
