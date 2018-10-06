@@ -1,34 +1,51 @@
 import * as React from 'react'
 import { Initiative } from '../interfaces/Initiative'
 import { isUndefined } from 'util'
-import TextField from './fields/TextField'
-import NumberField from './fields/NumberField'
 import Grid from '@material-ui/core/Grid'
 import Paper from '@material-ui/core/Paper'
+import TextField from '@material-ui/core/TextField'
+import { withStyles, Theme, StyledComponentProps } from '@material-ui/core'
 
-interface Props {
+interface Props extends StyledComponentProps {
   announce: Function,
-  initiative: Initiative
+  initiative: Initiative,
 }
 
-export default (props: Props) => {
-  if (isUndefined(props.initiative)) {
-    return null
-  }
-
+const InitiativeBlock = (props: Props) => {
+  const { classes = {} } = props
   const { value, name, health } = props.initiative
-
-  const announceValue = (attribute: string) => (value: string) => {
-    props.announce({ [attribute]: value })
-  }
 
   return (
     <Grid item xs={12}>
-      <Paper>
-        <TextField value={name} announce={announceValue('name')} />
-        <NumberField value={value} announce={announceValue('value')} />
-        <NumberField value={health} announce={announceValue('health')} />
+      <Paper className={classes.paper}>
+        <TextField
+          className={classes.textField}
+          label='Name'
+          value={name} />
+        <TextField
+          className={classes.textField}
+          label='Initiative'
+          value={value} />
+        <TextField
+          className={classes.textField}
+          label='Health'
+          value={health} />
       </Paper>
     </Grid>
   )
 }
+
+// TODO: Fix types...
+const styles = (theme: any): any => ({
+  paper: {
+    padding: theme.spacing.unit,
+    textAlign: 'center'
+  },
+  textField: {
+    marginLeft: theme.spacing.unit,
+    marginRight: theme.spacing.unit,
+    width: 200
+  }
+})
+
+export default withStyles(styles)(InitiativeBlock)
