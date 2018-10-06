@@ -12,20 +12,22 @@ interface Props extends DispatchProp {
 }
 
 const InitiativeTracker = (props: Props) => (
-  <Grid container spacing={8}>
-    <Grid item xs={12}>
-      <Paper>
-        <a href='#' onClick={() => props.dispatch({ type: 'ADD_BLOCK' })}>
-          Add
-        </a>
+  <div>
+    <Grid container spacing={16}>
+      <Grid item xs={6}>
+        <Paper>
+          <a href='#' onClick={() => props.dispatch({ type: 'ADD_BLOCK' })}>
+            Add
+          </a>
 
-        <a href='#' onClick={() => props.dispatch({ type: 'SORT_BY_INITIATIVE' })}>
-          Sort
-        </a>
-      </Paper>
+          <a href='#' onClick={() => props.dispatch({ type: 'SORT_BY_INITIATIVE' })}>
+            Sort
+          </a>
+        </Paper>
+      </Grid>
     </Grid>
     {generateBlocks(props.dispatch, props.initiatives)}
-  </Grid>
+  </div>
 )
 
 const generateBlocks = (dispatch: Dispatch, initiatives: List<Initiative>) =>

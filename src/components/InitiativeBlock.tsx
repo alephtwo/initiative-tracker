@@ -16,21 +16,23 @@ const InitiativeBlock = (props: Props) => {
   const { value, name, health } = props.initiative
 
   return (
-    <Grid item xs={12}>
-      <Paper className={classes.paper}>
-        <TextField
-          className={classes.textField}
-          label='Name'
-          value={name} />
-        <TextField
-          className={classes.textField}
-          label='Initiative'
-          value={value} />
-        <TextField
-          className={classes.textField}
-          label='Health'
-          value={health} />
-      </Paper>
+    <Grid container spacing={16}>
+      <Grid item xs={6}>
+        <Paper className={classes.paper}>
+          <TextField
+            className={classes.textField}
+            label='Name'
+            value={name} />
+          <TextField
+            className={classes.textField}
+            label='Initiative'
+            value={value} />
+          <TextField
+            className={classes.textField}
+            label='Health'
+            value={health} />
+        </Paper>
+      </Grid>
     </Grid>
   )
 }
