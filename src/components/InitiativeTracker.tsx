@@ -12,7 +12,7 @@ interface Props extends DispatchProp, StyledComponentProps {
 }
 
 const InitiativeTracker = (props: Props) => {
-  const { classes = {} } = props
+  const { classes = {}, initiatives, dispatch } = props
 
   return (
     <div style={{ textAlign: 'center' }}>
@@ -36,28 +36,35 @@ const InitiativeTracker = (props: Props) => {
           </Paper>
         </Grid>
       </Grid>
-      {generateBlocks(props.dispatch, props.initiatives)}
+      {generateBlocks(dispatch, initiatives)}
     </div>
   )
 }
 
-const generateBlocks = (dispatch: Dispatch, initiatives: List<Initiative>) =>
-  initiatives.map((i: Initiative) => generateBlock(dispatch, i)).toJS()
+const generateBlocks = (dispatch: Dispatch, initiatives: List<Initiative>) => {
+  const enableDelete = initiatives.size > 1
 
-const generateBlock = (dispatch: Dispatch, initiative: Initiative) => {
-  const announce = (extensions: Object) => dispatch({
-    type: 'UPDATE_INITIATIVE',
-    id: initiative.id,
-    extensions
-  })
-
-  return (
-    <InitiativeBlock
-      key={initiative.id}
-      announce={announce}
-      initiative={initiative} />
-  )
+  return initiatives.map((i: Initiative) =>
+    generateBlock(dispatch, i, enableDelete)).toJS()
 }
+
+const generateBlock =
+  (dispatch: Dispatch, initiative: Initiative, enableDelete: boolean) => {
+    const announce = (extensions: Object) => dispatch({
+      type: 'UPDATE_INITIATIVE',
+      id: initiative.id,
+      extensions
+    })
+
+    return (
+      <InitiativeBlock
+        key={initiative.id}
+        announce={announce}
+        dispatch={dispatch}
+        enableDelete={enableDelete}
+        initiative={initiative} />
+    )
+  }
 
 const styles = (theme: any) => ({
   button: {

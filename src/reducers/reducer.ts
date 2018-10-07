@@ -26,6 +26,8 @@ export default (state = initialState, action: UpdateInitiativeAction): AppState 
       return addBlock(state)
     case 'UPDATE_INITIATIVE':
       return updateInitiative(state, action)
+    case 'DELETE_INITIATIVE':
+      return deleteInitiative(state, action.id)
     case 'SORT_BY_INITIATIVE':
       return sortByInitiative(state)
   }
@@ -44,6 +46,13 @@ const updateInitiative = (state: AppState, action: UpdateInitiativeAction): AppS
   return state.update('initiatives', (list: List<Initiative>) => {
     const index = list.findIndex((i: Initiative) => i.id === action.id)
     return list.update(index, (i: Initiative) => Object.assign({}, i, action.extensions))
+  })
+}
+
+const deleteInitiative = (state: AppState, id: string): AppState => {
+  return state.update('initiatives', (list: List<Initiative>) => {
+    const index = list.findIndex((i: Initiative) => i.id === id)
+    return list.remove(index)
   })
 }
 
