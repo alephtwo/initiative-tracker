@@ -19,23 +19,21 @@ const InitiativeTracker = (props: Props) => {
   return (
     <div style={{ textAlign: 'center' }}>
       <Grid container spacing={16}>
-        <Grid item xs={6}>
-          <Paper>
-            <Button
-              className={classes.button}
-              color='primary'
-              variant='contained'
-              onClick={() => props.dispatch({ type: 'ADD_BLOCK' })}>
-              <AddIcon className={classes.leftIcon} />Add
-            </Button>
-            <Button
-              className={classes.button}
-              color='secondary'
-              variant='contained'
-              onClick={() => props.dispatch({ type: 'SORT_BY_INITIATIVE' })}>
-                <SortIcon className={classes.leftIcon} />Sort
-            </Button>
-          </Paper>
+        <Grid item xs={12}>
+          <Button
+            className={classes.button}
+            color='primary'
+            variant='contained'
+            onClick={() => props.dispatch({ type: 'ADD_BLOCK' })}>
+            <AddIcon className={classes.leftIcon} />Add
+          </Button>
+          <Button
+            className={classes.button}
+            color='secondary'
+            variant='contained'
+            onClick={() => props.dispatch({ type: 'SORT_BY_INITIATIVE' })}>
+              <SortIcon className={classes.leftIcon} />Sort
+          </Button>
         </Grid>
       </Grid>
       {generateBlocks(dispatch, initiatives)}

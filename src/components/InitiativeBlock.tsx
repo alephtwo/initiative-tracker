@@ -35,7 +35,7 @@ const InitiativeBlock = (props: Props) => {
 
   return (
     <Grid container spacing={16}>
-      <Grid item xs={6}>
+      <Grid item xs={12}>
         <Paper className={classes.paper}>
           <TextField
             onChange={generateAnnounce('name')}
