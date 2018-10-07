@@ -57,7 +57,7 @@ const InitiativeBlock = (props: Props) => {
             value={health} />
           <Button
             onClick={() => dispatch({ type: 'DELETE_INITIATIVE', id })}
-            variant='contained'
+            variant='fab'
             color='default'>
             <DeleteIcon />
           </Button>

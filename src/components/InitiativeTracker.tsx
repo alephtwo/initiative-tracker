@@ -19,16 +19,9 @@ const InitiativeTracker = (props: Props) => {
   const { classes = {}, initiatives, dispatch } = props
 
   return (
-    <div style={{ textAlign: 'center' }}>
+    <div>
       <Grid container spacing={16}>
         <Grid item xs={12}>
-          <Button
-            className={classes.button}
-            color='primary'
-            variant='contained'
-            onClick={() => props.dispatch({ type: 'ADD_BLOCK' })}>
-            <AddIcon className={classes.leftIcon} />Add
-          </Button>
           <Button
             className={classes.button}
             color='secondary'
@@ -39,6 +32,16 @@ const InitiativeTracker = (props: Props) => {
         </Grid>
       </Grid>
       {generateBlocks(dispatch, initiatives)}
+      <Grid container spacing={32}>
+        <Grid item xs={12}>
+          <Button
+            color='primary'
+            variant='fab'
+            onClick={() => props.dispatch({ type: 'ADD_BLOCK' })}>
+            <AddIcon />
+          </Button>
+        </Grid>
+      </Grid>
     </div>
   )
 }
