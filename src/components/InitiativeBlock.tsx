@@ -45,13 +45,13 @@ const InitiativeBlock = (props: Props) => {
           <TextField
             className={classes.textField}
             onChange={generateAnnounce('value', toNumber)}
-            onBlur={generateAnnounce('value', () => value || 0)}
+            onBlur={generateAnnounce('value', () => Math.min(value || 0, 40))}
             label='Initiative'
             value={value} />
           <TextField
             className={classes.textField}
             onChange={generateAnnounce('health', toNumber)}
-            onBlur={generateAnnounce('health', () => health || 0)}
+            onBlur={generateAnnounce('health', () => Math.min(health || 0, 1500))}
             label='Health'
             value={health} />
           <Button
