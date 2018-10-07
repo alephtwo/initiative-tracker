@@ -5,7 +5,9 @@ import { List } from 'immutable'
 import InitiativeBlock from './InitiativeBlock'
 import { Initiative } from '../interfaces/Initiative'
 import { Dispatch } from 'redux'
-import { Paper, Grid, Theme, withStyles, Button, StyledComponentProps } from '@material-ui/core'
+import { Paper, Grid, withStyles, Button, StyledComponentProps } from '@material-ui/core'
+import AddIcon from '@material-ui/icons/Add'
+import SortIcon from '@material-ui/icons/Sort'
 
 interface Props extends DispatchProp, StyledComponentProps {
   initiatives: List<Initiative>
@@ -24,14 +26,14 @@ const InitiativeTracker = (props: Props) => {
               color='primary'
               variant='contained'
               onClick={() => props.dispatch({ type: 'ADD_BLOCK' })}>
-                Add
+              <AddIcon className={classes.leftIcon} />Add
             </Button>
             <Button
               className={classes.button}
               color='secondary'
               variant='contained'
               onClick={() => props.dispatch({ type: 'SORT_BY_INITIATIVE' })}>
-                Sort
+                <SortIcon className={classes.leftIcon} />Sort
             </Button>
           </Paper>
         </Grid>
@@ -65,6 +67,9 @@ const generateBlock =
 const styles = (theme: any) => ({
   button: {
     margin: theme.spacing.unit
+  },
+  leftIcon: {
+    marginRight: theme.spacing.unit
   }
 })
 
