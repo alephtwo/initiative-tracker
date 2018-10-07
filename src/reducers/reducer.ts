@@ -3,13 +3,14 @@ import { List, Map } from 'immutable'
 import { AppState } from '../interfaces/AppState'
 import { Initiative } from '../interfaces/Initiative'
 import * as uuidv4 from 'uuid/v4'
+import randomName from '../util/randomName'
 
 // TODO: Dynamically generate placeholder names from a list
 
 const initialState: AppState = Map({
   initiatives: List<Initiative>([{
     id: uuidv4(),
-    name: 'Placeholder McGee',
+    name: randomName(),
     value: 0,
     health: 0
   }])
@@ -37,7 +38,7 @@ export default (state = initialState, action: UpdateInitiativeAction): AppState 
 const addBlock = (state: AppState): AppState =>
   state.update('initiatives', (list: List<Initiative>) => list.push({
     id: uuidv4(),
-    name: 'Sir Bearington',
+    name: randomName(),
     value: 0,
     health: 0
   }))
