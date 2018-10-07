@@ -42,14 +42,11 @@ const InitiativeTracker = (props: Props) => {
 }
 
 const generateBlocks = (dispatch: Dispatch, initiatives: List<Initiative>) => {
-  const enableDelete = initiatives.size > 1
-
-  return initiatives.map((i: Initiative) =>
-    generateBlock(dispatch, i, enableDelete)).toJS()
+  return initiatives.map((i: Initiative) => generateBlock(dispatch, i)).toJS()
 }
 
 const generateBlock =
-  (dispatch: Dispatch, initiative: Initiative, enableDelete: boolean) => {
+  (dispatch: Dispatch, initiative: Initiative) => {
     const announce = (extensions: Object) => dispatch({
       type: 'UPDATE_INITIATIVE',
       id: initiative.id,
@@ -61,7 +58,6 @@ const generateBlock =
         key={initiative.id}
         announce={announce}
         dispatch={dispatch}
-        enableDelete={enableDelete}
         initiative={initiative} />
     )
   }

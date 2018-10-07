@@ -3,18 +3,19 @@ import { Initiative } from '../interfaces/Initiative'
 import Grid from '@material-ui/core/Grid'
 import Paper from '@material-ui/core/Paper'
 import TextField from '@material-ui/core/TextField'
-import { withStyles, StyledComponentProps, Button } from '@material-ui/core'
+import Button from '@material-ui/core/Button'
+import { withStyles, StyledComponentProps } from '@material-ui/core'
+import DeleteIcon from '@material-ui/icons/Delete'
 import { Dispatch } from 'redux'
 
 interface Props extends StyledComponentProps {
   announce: Function,
   dispatch: Dispatch,
-  initiative: Initiative,
-  enableDelete: boolean
+  initiative: Initiative
 }
 
 const InitiativeBlock = (props: Props) => {
-  const { classes = {}, announce, enableDelete, dispatch } = props
+  const { classes = {}, announce, dispatch } = props
   const { id, value, name, health } = props.initiative
 
   const generateAnnounce = (attribute: string, transform = (a: any) => a) => {
@@ -30,17 +31,6 @@ const InitiativeBlock = (props: Props) => {
     }
 
     return parseInt(numbers, 10)
-  }
-
-  const DeleteButton = () => {
-    return (
-      <Button
-        onClick={() => dispatch({ type: 'DELETE_INITIATIVE', id })}
-        disabled={!enableDelete}
-        color='primary'>
-        Delete
-      </Button>
-    )
   }
 
   return (
@@ -64,7 +54,12 @@ const InitiativeBlock = (props: Props) => {
             onBlur={generateAnnounce('health', () => health || 0)}
             label='Health'
             value={health} />
-          <DeleteButton />
+          <Button
+            onClick={() => dispatch({ type: 'DELETE_INITIATIVE', id })}
+            variant='contained'
+            color='default'>
+            <DeleteIcon />
+          </Button>
         </Paper>
       </Grid>
     </Grid>
