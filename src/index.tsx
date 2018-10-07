@@ -6,15 +6,14 @@ import Grid from '@material-ui/core/Grid'
 
 import reducer from './reducers/reducer'
 import InitiativeTracker from './components/InitiativeTracker'
+import { withStyles } from '@material-ui/core'
 
 const app = (
   <Provider store={createStore(reducer)}>
     <Grid container direction='row' justify='center' alignItems='center'>
-      <Grid />
-        <Grid sm={12} md={10} lg={8}>
-          <InitiativeTracker />
-        </Grid>
-      <Grid />
+      <Grid sm={12} md={10} lg={8}>
+        <InitiativeTracker />
+      </Grid>
     </Grid>
   </Provider>
 )

@@ -5,7 +5,7 @@ import { List } from 'immutable'
 import InitiativeBlock from './InitiativeBlock'
 import { Initiative } from '../interfaces/Initiative'
 import { Dispatch } from 'redux'
-import { withStyles, StyledComponentProps } from '@material-ui/core'
+import { withStyles, StyledComponentProps, Theme } from '@material-ui/core'
 import Grid from '@material-ui/core/Grid'
 import Button from '@material-ui/core/Button'
 import AddIcon from '@material-ui/icons/Add'
@@ -20,6 +20,7 @@ const InitiativeTracker = (props: Props) => {
 
   return (
     <div>
+      <h1 className={classes.header}>initiative Tracker</h1>
       <Grid container spacing={16}>
         <Grid item xs={12}>
           <Button
@@ -68,6 +69,9 @@ const generateBlock =
   }
 
 const styles = (theme: any) => ({
+  header: {
+    fontFamily: theme.typography.fontFamily
+  },
   button: {
     margin: theme.spacing.unit
   },
