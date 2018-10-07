@@ -7,6 +7,7 @@ import Button from '@material-ui/core/Button'
 import { withStyles, StyledComponentProps } from '@material-ui/core'
 import DeleteIcon from '@material-ui/icons/Delete'
 import { Dispatch } from 'redux'
+const { min, abs } = Math
 
 interface Props extends StyledComponentProps {
   announce: Function,
@@ -45,13 +46,13 @@ const InitiativeBlock = (props: Props) => {
           <TextField
             className={classes.textField}
             onChange={generateAnnounce('value', toNumber)}
-            onBlur={generateAnnounce('value', () => Math.min(value || 0, 40))}
+            onBlur={generateAnnounce('value', () => min(abs(value) || 0, 40))}
             label='Initiative'
             value={value} />
           <TextField
             className={classes.textField}
             onChange={generateAnnounce('health', toNumber)}
-            onBlur={generateAnnounce('health', () => Math.min(health || 0, 1500))}
+            onBlur={generateAnnounce('health', () => min(abs(health) || 0, 1500))}
             label='Health'
             value={health} />
           <Button
