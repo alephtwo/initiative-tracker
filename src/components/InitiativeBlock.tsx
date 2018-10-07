@@ -36,7 +36,7 @@ const InitiativeBlock = (props: Props) => {
 
   return (
     <Grid container spacing={32}>
-      <Grid item xs={12}>
+      <Grid item>
         <Paper className={classes.paper}>
           <TextField
             onChange={generateAnnounce('name')}
@@ -57,7 +57,7 @@ const InitiativeBlock = (props: Props) => {
             value={health} />
           <Button
             onClick={() => dispatch({ type: 'DELETE_INITIATIVE', id })}
-            variant='fab'
+            variant='contained'
             color='default'>
             <DeleteIcon />
           </Button>
@@ -75,8 +75,7 @@ const styles = (theme: any): any => ({
   },
   textField: {
     marginLeft: theme.spacing.unit,
-    marginRight: theme.spacing.unit,
-    width: 200
+    marginRight: theme.spacing.unit
   }
 })
 
