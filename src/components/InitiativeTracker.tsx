@@ -20,7 +20,6 @@ const InitiativeTracker = (props: Props) => {
 
   return (
     <div>
-      <h1 className={classes.header}>initiative Tracker</h1>
       <Grid container spacing={16}>
         <Grid item xs={12}>
           <Button
