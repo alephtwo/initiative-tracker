@@ -1,13 +1,19 @@
 import * as React from 'react'
-import { Initiative } from '../interfaces/Initiative'
-import Grid from '@material-ui/core/Grid'
-import TextField from '@material-ui/core/TextField'
-import Button from '@material-ui/core/Button'
-import { withStyles, StyledComponentProps, Theme } from '@material-ui/core'
-import DeleteIcon from '@material-ui/icons/Delete'
-import Paper from '@material-ui/core/Paper'
 import { Dispatch } from 'redux'
-import Typography from '@material-ui/core/Typography'
+import {
+  Button,
+  createStyles,
+  Grid,
+  Paper,
+  StyledComponentProps,
+  TextField,
+  Theme,
+  Typography,
+  withStyles
+} from '@material-ui/core'
+import DeleteIcon from '@material-ui/icons/Delete'
+import { Initiative } from '../interfaces/Initiative'
+
 const { min, abs } = Math
 
 interface Props extends StyledComponentProps {
@@ -81,7 +87,7 @@ const InitiativeBlock = (props: Props) => {
   )
 }
 
-const styles = (theme: Theme) => ({
+const styles = (theme: Theme) => createStyles({
   textField: {
     marginLeft: theme.spacing.unit,
     marginRight: theme.spacing.unit

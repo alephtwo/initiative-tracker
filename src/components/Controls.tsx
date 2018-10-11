@@ -1,9 +1,14 @@
 import * as React from 'react'
 import { DispatchProp } from 'react-redux'
-import Button from '@material-ui/core/Button'
+import {
+  Button,
+  createStyles,
+  StyledComponentProps,
+  Theme,
+  withStyles
+} from '@material-ui/core'
 import AddIcon from '@material-ui/icons/Add'
 import SortIcon from '@material-ui/icons/Sort'
-import { withStyles, StyledComponentProps, Theme } from '@material-ui/core'
 
 interface Props extends DispatchProp, StyledComponentProps {
 
@@ -30,7 +35,7 @@ const Controls = (props: Props) => {
   )
 }
 
-const styles = (theme: Theme) => ({
+const styles = (theme: Theme) => createStyles({
   leftIcon: {
     marginRight: theme.spacing.unit
   },
