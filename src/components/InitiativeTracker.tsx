@@ -5,7 +5,7 @@ import { List } from 'immutable'
 import InitiativeBlock from './InitiativeBlock'
 import { Initiative } from '../interfaces/Initiative'
 import { Dispatch } from 'redux'
-import { withStyles, StyledComponentProps, Theme } from '@material-ui/core'
+import { withStyles, StyledComponentProps } from '@material-ui/core'
 import Grid from '@material-ui/core/Grid'
 import Button from '@material-ui/core/Button'
 import AddIcon from '@material-ui/icons/Add'
@@ -23,25 +23,21 @@ const InitiativeTracker = (props: Props) => {
       <Grid container spacing={16}>
         <Grid item xs={12}>
           <Button
+            color='primary'
+            variant='contained'
+            onClick={() => props.dispatch({ type: 'ADD_BLOCK' })}>
+            <AddIcon className={classes.leftIcon} />Add
+          </Button>
+          <Button
             className={classes.button}
             color='secondary'
             variant='contained'
             onClick={() => props.dispatch({ type: 'SORT_BY_INITIATIVE' })}>
-              <SortIcon className={classes.leftIcon} />Sort
+            <SortIcon className={classes.leftIcon} />Sort
           </Button>
         </Grid>
       </Grid>
       {generateBlocks(dispatch, initiatives)}
-      <Grid container spacing={32}>
-        <Grid item xs={12}>
-          <Button
-            color='primary'
-            variant='fab'
-            onClick={() => props.dispatch({ type: 'ADD_BLOCK' })}>
-            <AddIcon />
-          </Button>
-        </Grid>
-      </Grid>
     </div>
   )
 }
