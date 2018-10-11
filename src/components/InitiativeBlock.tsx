@@ -76,18 +76,20 @@ const InitiativeBlock = (props: Props) => {
         </Grid>
         <Grid item>
           <TextField
-            className={classes.textField}
+            className={classes.numberField}
+            error={value.toString().length > 2}
             onChange={generateAnnounce('value', toNumber)}
-            onBlur={generateAnnounce('value', () => min(abs(value) || 0, 40))}
+            onBlur={generateAnnounce('value', () => min(abs(value) || 0, 99))}
             label='Initiative'
             variant='outlined'
             value={value} />
         </Grid>
         <Grid item>
           <TextField
-            className={classes.textField}
+            className={classes.numberField}
+            error={health.toString().length > 4}
             onChange={generateAnnounce('health', toNumber)}
-            onBlur={generateAnnounce('health', () => min(abs(health) || 0, 1500))}
+            onBlur={generateAnnounce('health', () => min(abs(health) || 0, 9999))}
             label='Health'
             variant='outlined'
             value={health} />
@@ -110,6 +112,10 @@ const InitiativeBlock = (props: Props) => {
 const styles = (theme: Theme) => createStyles({
   textField: {
     margin: theme.spacing.unit
+  },
+  numberField: {
+    margin: theme.spacing.unit,
+    width: '100px'
   },
   paper: {
     padding: theme.spacing.unit,
