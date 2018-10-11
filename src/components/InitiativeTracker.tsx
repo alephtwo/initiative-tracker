@@ -1,82 +1,32 @@
+import { List } from 'immutable'
 import * as React from 'react'
 import { connect, DispatchProp } from 'react-redux'
+import { Grid } from '@material-ui/core'
+import Controls from './Controls'
 import { AppState } from '../interfaces/AppState'
-import { List } from 'immutable'
-import InitiativeBlock from './InitiativeBlock'
 import { Initiative } from '../interfaces/Initiative'
-import { Dispatch } from 'redux'
-import { withStyles, StyledComponentProps } from '@material-ui/core'
-import Grid from '@material-ui/core/Grid'
-import Button from '@material-ui/core/Button'
-import AddIcon from '@material-ui/icons/Add'
-import SortIcon from '@material-ui/icons/Sort'
+import InitiativeBlocks from './InitiativeBlocks'
 
-interface Props extends DispatchProp, StyledComponentProps {
+interface Props extends DispatchProp {
   initiatives: List<Initiative>
 }
 
 const InitiativeTracker = (props: Props) => {
-  const { classes = {}, initiatives, dispatch } = props
+  const { initiatives, dispatch } = props
 
   return (
-    <div>
-      <Grid container spacing={16}>
-        <Grid item xs={12}>
-          <Button
-            color='primary'
-            variant='contained'
-            onClick={() => props.dispatch({ type: 'ADD_BLOCK' })}>
-            <AddIcon className={classes.leftIcon} />Add
-          </Button>
-          <Button
-            className={classes.button}
-            color='secondary'
-            variant='contained'
-            onClick={() => props.dispatch({ type: 'SORT_BY_INITIATIVE' })}>
-            <SortIcon className={classes.leftIcon} />Sort
-          </Button>
-        </Grid>
+    <Grid container>
+      <Grid container item>
+        <Controls dispatch={dispatch} />
       </Grid>
-      {generateBlocks(dispatch, initiatives)}
-    </div>
+      <Grid container item>
+        <InitiativeBlocks dispatch={dispatch} initiatives={initiatives} />
+      </Grid>
+    </Grid>
   )
 }
-
-const generateBlocks = (dispatch: Dispatch, initiatives: List<Initiative>) => {
-  return initiatives.map((i: Initiative) => generateBlock(dispatch, i)).toJS()
-}
-
-const generateBlock =
-  (dispatch: Dispatch, initiative: Initiative) => {
-    const announce = (extensions: Object) => dispatch({
-      type: 'UPDATE_INITIATIVE',
-      id: initiative.id,
-      extensions
-    })
-
-    return (
-      <InitiativeBlock
-        key={initiative.id}
-        announce={announce}
-        dispatch={dispatch}
-        initiative={initiative} />
-    )
-  }
-
-const styles = (theme: any) => ({
-  header: {
-    fontFamily: theme.typography.fontFamily
-  },
-  button: {
-    margin: theme.spacing.unit
-  },
-  leftIcon: {
-    marginRight: theme.spacing.unit
-  }
-})
 
 const mapStateToProps = (state: AppState) =>
   ({ initiatives: state.get('initiatives') })
 
-const StyledInitiativeTracker = withStyles(styles)(InitiativeTracker)
-export default connect(mapStateToProps)(StyledInitiativeTracker)
+export default connect(mapStateToProps)(InitiativeTracker)

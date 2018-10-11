@@ -3,7 +3,7 @@ import { Initiative } from '../interfaces/Initiative'
 import Grid from '@material-ui/core/Grid'
 import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
-import { withStyles, StyledComponentProps } from '@material-ui/core'
+import { withStyles, StyledComponentProps, Theme } from '@material-ui/core'
 import DeleteIcon from '@material-ui/icons/Delete'
 import { Dispatch } from 'redux'
 const { min, abs } = Math
@@ -65,12 +65,7 @@ const InitiativeBlock = (props: Props) => {
   )
 }
 
-// TODO: Fix types...
-const styles = (theme: any): any => ({
-  paper: {
-    padding: theme.spacing.unit,
-    textAlign: 'center'
-  },
+const styles = (theme: Theme) => ({
   textField: {
     marginLeft: theme.spacing.unit,
     marginRight: theme.spacing.unit
