@@ -12,7 +12,8 @@ const initialState: AppState = Map({
     id: uuidv4(),
     name: randomName(),
     value: 0,
-    health: 0
+    health: 0,
+    holdingAction: false
   }])
 })
 
@@ -40,7 +41,8 @@ const addBlock = (state: AppState): AppState =>
     id: uuidv4(),
     name: randomName(),
     value: 0,
-    health: 0
+    health: 0,
+    holdingAction: false
   }))
 
 const updateInitiative = (state: AppState, action: UpdateInitiativeAction): AppState => {

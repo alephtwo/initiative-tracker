@@ -2,7 +2,9 @@ import * as React from 'react'
 import { Dispatch } from 'redux'
 import {
   Button,
+  Checkbox,
   createStyles,
+  FormControlLabel,
   Grid,
   Paper,
   StyledComponentProps,
@@ -25,7 +27,7 @@ interface Props extends StyledComponentProps {
 
 const InitiativeBlock = (props: Props) => {
   const { classes = {}, announce, dispatch, order } = props
-  const { id, value, name, health } = props.initiative
+  const { id, value, name, health, holdingAction } = props.initiative
 
   const generateAnnounce = (attribute: string, transform = (a: any) => a) => {
     return (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -41,6 +43,12 @@ const InitiativeBlock = (props: Props) => {
 
     return parseInt(numbers, 10)
   }
+
+  const HoldAction = () => (
+    <Checkbox
+      onChange={generateAnnounce('holdingAction', () => !holdingAction)}
+      checked={holdingAction} />
+  )
 
   return (
     <Paper className={classes.paper}>
@@ -72,6 +80,9 @@ const InitiativeBlock = (props: Props) => {
             onBlur={generateAnnounce('health', () => min(abs(health) || 0, 1500))}
             label='Health'
             value={health} />
+        </Grid>
+        <Grid item>
+          <FormControlLabel control={<HoldAction />} label='Hold' />
         </Grid>
         <Grid item>
           <Button
