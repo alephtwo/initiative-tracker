@@ -34,25 +34,31 @@ const InitiativeBlock = (props: Props) => {
   }
 
   return (
-    <Grid container spacing={32}>
+    <Grid container spacing={16} direction='row' alignItems='center'>
       <Grid item>
         <TextField
           onChange={generateAnnounce('name')}
           className={classes.textField}
           label='Name'
           value={name} />
+      </Grid>
+      <Grid item>
         <TextField
           className={classes.textField}
           onChange={generateAnnounce('value', toNumber)}
           onBlur={generateAnnounce('value', () => min(abs(value) || 0, 40))}
           label='Initiative'
           value={value} />
+      </Grid>
+      <Grid item>
         <TextField
           className={classes.textField}
           onChange={generateAnnounce('health', toNumber)}
           onBlur={generateAnnounce('health', () => min(abs(health) || 0, 1500))}
           label='Health'
           value={health} />
+      </Grid>
+      <Grid item>
         <Button
           onClick={() => dispatch({ type: 'DELETE_INITIATIVE', id })}
           variant='contained'
