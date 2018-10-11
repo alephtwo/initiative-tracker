@@ -12,7 +12,7 @@ interface Props extends StyledComponentProps, DispatchProp {
 const InitiativeBlocks = (props: Props) => {
   const { initiatives, dispatch } = props
 
-  const blocks = initiatives.map((initiative: Initiative) => {
+  const blocks = initiatives.map((initiative: Initiative, i: number) => {
     const announce = (extensions: Object) => dispatch({
       type: 'UPDATE_INITIATIVE',
       id: initiative.id,
@@ -24,6 +24,7 @@ const InitiativeBlocks = (props: Props) => {
         key={initiative.id}
         announce={announce}
         dispatch={dispatch}
+        order={i + 1}
         initiative={initiative} />
     )
   })

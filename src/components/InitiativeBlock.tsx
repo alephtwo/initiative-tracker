@@ -7,16 +7,18 @@ import { withStyles, StyledComponentProps, Theme } from '@material-ui/core'
 import DeleteIcon from '@material-ui/icons/Delete'
 import Paper from '@material-ui/core/Paper'
 import { Dispatch } from 'redux'
+import Typography from '@material-ui/core/Typography'
 const { min, abs } = Math
 
 interface Props extends StyledComponentProps {
   announce: Function,
   dispatch: Dispatch,
-  initiative: Initiative
+  initiative: Initiative,
+  order: number
 }
 
 const InitiativeBlock = (props: Props) => {
-  const { classes = {}, announce, dispatch } = props
+  const { classes = {}, announce, dispatch, order } = props
   const { id, value, name, health } = props.initiative
 
   const generateAnnounce = (attribute: string, transform = (a: any) => a) => {
@@ -37,6 +39,11 @@ const InitiativeBlock = (props: Props) => {
   return (
     <Paper className={classes.paper}>
       <Grid container spacing={16} direction='row' alignItems='center'>
+        <Grid item>
+          <Typography variant='title' className={classes.order} align='center'>
+            {order}
+          </Typography>
+        </Grid>
         <Grid item>
           <TextField
             onChange={generateAnnounce('name')}
@@ -83,6 +90,10 @@ const styles = (theme: Theme) => ({
     padding: theme.spacing.unit,
     marginTop: theme.spacing.unit,
     marginBottom: theme.spacing.unit
+  },
+  order: {
+    margin: theme.spacing.unit,
+    width: 3 * theme.spacing.unit
   }
 })
 
