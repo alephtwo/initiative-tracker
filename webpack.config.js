@@ -3,7 +3,12 @@ const path = require('path'),
 
 const typescript = {
   test: /\.tsx?$/,
-  loader: 'awesome-typescript-loader'
+  use: 'awesome-typescript-loader'
+}
+
+const css = {
+  test: /\.css$/,
+  use: [ 'style-loader', 'css-loader' ]
 }
 
 const html = new HtmlWebpackPlugin({
@@ -21,7 +26,7 @@ module.exports = {
     path: path.resolve(__dirname, 'dist')
   },
   module: {
-    rules: [typescript]
+    rules: [typescript, css]
   },
   plugins: [html]
 }
