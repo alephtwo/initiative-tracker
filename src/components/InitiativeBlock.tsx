@@ -63,7 +63,7 @@ const InitiativeBlock = (props: Props) => {
           onClick={() => dispatch({ type: 'DELETE_INITIATIVE', id })}
           variant='contained'
           size='small'
-          color='default'>
+          color='secondary'>
           <DeleteIcon />
         </Button>
       </Grid>
