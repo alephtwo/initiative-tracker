@@ -11,7 +11,8 @@ import {
   TextField,
   Theme,
   Typography,
-  withStyles
+  withStyles,
+  createMuiTheme
 } from '@material-ui/core'
 import DeleteIcon from '@material-ui/icons/Delete'
 import { Initiative } from '../interfaces/Initiative'
@@ -57,6 +58,10 @@ const InitiativeBlock = (props: Props) => {
       checked={holdingAction} />
   )
 
+  const deleteButtonProps = health === 0 ? {} : {
+    color: 'primary',
+  }
+
   return (
     <Paper className={classes.paper}>
       <Grid container spacing={16} direction='row' alignItems='center'>
@@ -100,6 +105,7 @@ const InitiativeBlock = (props: Props) => {
         <Grid item>
           <Button
             onClick={() => dispatch({ type: 'DELETE_INITIATIVE', id })}
+            color={health === 0 ? 'secondary' : 'default'}
             size='small'>
             <DeleteIcon />
           </Button>
