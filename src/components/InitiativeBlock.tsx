@@ -27,7 +27,14 @@ interface Props extends StyledComponentProps {
 
 const InitiativeBlock = (props: Props) => {
   const { classes = {}, announce, dispatch, order } = props
-  const { id, value, name, health, holdingAction } = props.initiative
+  const {
+    id,
+    value,
+    name,
+    health,
+    placeholder,
+    holdingAction
+  } = props.initiative
 
   const generateAnnounce = (attribute: string, transform = (a: any) => a) => {
     return (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -63,6 +70,8 @@ const InitiativeBlock = (props: Props) => {
             onChange={generateAnnounce('name')}
             className={classes.textField}
             label='Name'
+            placeholder={placeholder}
+            variant='outlined'
             value={name} />
         </Grid>
         <Grid item>
@@ -71,6 +80,7 @@ const InitiativeBlock = (props: Props) => {
             onChange={generateAnnounce('value', toNumber)}
             onBlur={generateAnnounce('value', () => min(abs(value) || 0, 40))}
             label='Initiative'
+            variant='outlined'
             value={value} />
         </Grid>
         <Grid item>
@@ -79,6 +89,7 @@ const InitiativeBlock = (props: Props) => {
             onChange={generateAnnounce('health', toNumber)}
             onBlur={generateAnnounce('health', () => min(abs(health) || 0, 1500))}
             label='Health'
+            variant='outlined'
             value={health} />
         </Grid>
         <Grid item>
@@ -87,9 +98,7 @@ const InitiativeBlock = (props: Props) => {
         <Grid item>
           <Button
             onClick={() => dispatch({ type: 'DELETE_INITIATIVE', id })}
-            variant='contained'
-            size='small'
-            color='secondary'>
+            size='small'>
             <DeleteIcon />
           </Button>
         </Grid>
@@ -100,8 +109,7 @@ const InitiativeBlock = (props: Props) => {
 
 const styles = (theme: Theme) => createStyles({
   textField: {
-    marginLeft: theme.spacing.unit,
-    marginRight: theme.spacing.unit
+    margin: theme.spacing.unit
   },
   paper: {
     padding: theme.spacing.unit,
