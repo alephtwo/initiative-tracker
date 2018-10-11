@@ -6,7 +6,6 @@ import Grid from '@material-ui/core/Grid'
 
 import reducer from './reducers/reducer'
 import InitiativeTracker from './components/InitiativeTracker'
-import { withStyles } from '@material-ui/core'
 
 const app = (
   <Provider store={createStore(reducer)}>
