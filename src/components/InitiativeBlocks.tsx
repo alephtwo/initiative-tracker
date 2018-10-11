@@ -12,6 +12,14 @@ interface Props extends StyledComponentProps, DispatchProp {
 const InitiativeBlocks = (props: Props) => {
   const { initiatives, dispatch } = props
 
+  const uniqueValues = initiatives.map((i: Initiative) => i.value)
+    .toOrderedSet()
+    .sortBy((a: number) => -a)
+    .toList()
+
+  const determineOrder = (value: number) =>
+    uniqueValues.findIndex(v => v === value) + 1
+
   const blocks = initiatives.map((initiative: Initiative, i: number) => {
     const announce = (extensions: Object) => dispatch({
       type: 'UPDATE_INITIATIVE',
@@ -24,7 +32,7 @@ const InitiativeBlocks = (props: Props) => {
         key={initiative.id}
         announce={announce}
         dispatch={dispatch}
-        order={i + 1}
+        order={determineOrder(initiative.value)}
         initiative={initiative} />
     )
   })
