@@ -11,8 +11,7 @@ import {
   TextField,
   Theme,
   Typography,
-  withStyles,
-  createMuiTheme
+  withStyles
 } from '@material-ui/core'
 import DeleteIcon from '@material-ui/icons/Delete'
 import { Initiative } from '../interfaces/Initiative'
@@ -38,7 +37,7 @@ const InitiativeBlock = (props: Props) => {
   } = props.initiative
 
   const generateAnnounce = (attribute: string, transform = (a: any) => a) => {
-    return (event: React.ChangeEvent<HTMLInputElement>) => {
+    return (event: any) => {
       announce({ [attribute]: transform(event.target.value) })
     }
   }
@@ -64,9 +63,9 @@ const InitiativeBlock = (props: Props) => {
 
   return (
     <Paper className={classes.paper}>
-      <Grid container spacing={16} direction='row' alignItems='center'>
+      <Grid container spacing={1} direction='row' alignItems='center'>
         <Grid item>
-          <Typography variant='title' className={classes.order} align='center'>
+        <Typography variant='h6' className={classes.order} align='center'>
             {order}
           </Typography>
         </Grid>
@@ -117,20 +116,20 @@ const InitiativeBlock = (props: Props) => {
 
 const styles = (theme: Theme) => createStyles({
   textField: {
-    margin: theme.spacing.unit
+    margin: theme.spacing(1)
   },
   numberField: {
-    margin: theme.spacing.unit,
+    margin: theme.spacing(1),
     width: '100px'
   },
   paper: {
-    padding: theme.spacing.unit,
-    marginTop: theme.spacing.unit,
-    marginBottom: theme.spacing.unit
+    padding: theme.spacing(1),
+    marginTop: theme.spacing(1),
+    marginBottom: theme.spacing(1)
   },
   order: {
-    margin: theme.spacing.unit,
-    width: 3 * theme.spacing.unit
+    margin: theme.spacing(1),
+    width: 3 * theme.spacing(1)
   }
 })
 

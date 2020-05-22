@@ -2,7 +2,7 @@ import { Action } from 'redux'
 import { List, Map } from 'immutable'
 import { AppState } from '../interfaces/AppState'
 import { Initiative } from '../interfaces/Initiative'
-import * as uuidv4 from 'uuid/v4'
+import { v4 as uuidv4 } from 'uuid'
 import randomName from '../util/randomName'
 
 const initialState: AppState = Map({

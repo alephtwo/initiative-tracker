@@ -37,10 +37,10 @@ const Controls = (props: Props) => {
 
 const styles = (theme: Theme) => createStyles({
   leftIcon: {
-    marginRight: theme.spacing.unit
+    marginRight: theme.spacing(1)
   },
   button: {
-    margin: theme.spacing.unit
+    margin: theme.spacing(1)
   }
 })
 
