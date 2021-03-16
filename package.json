@@ -20,6 +20,7 @@
   },
   "homepage": "https://github.com/alephtwo/initiative-tracker#readme",
   "dependencies": {
+    "immutable": "^4.0.0-rc.12",
     "react": "17.0.1",
     "react-dom": "17.0.1"
   },
