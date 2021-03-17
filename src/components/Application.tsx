@@ -9,8 +9,7 @@ function Application() {
   const [state, dispatch] = useReducer(reducer, initialState);
   const actions = createActions(dispatch);
 
-  const cards = state.participants
-    .map((p, i) => <Card key={`card-${i}`} participant={p} />);
+  const cards = state.participants.map((p) => <Card key={p.id} participant={p} />);
 
   return (
     <>
@@ -22,7 +21,7 @@ function Application() {
 }
 
 const createActions = (dispatch: React.Dispatch<Message>) => ({
-  addRow: () => dispatch({ type: 'add-row' })
+  addRow: () => dispatch({ type: 'add-row' }),
 });
 
 export default Application;
