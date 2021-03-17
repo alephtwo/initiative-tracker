@@ -9,7 +9,9 @@ function Application() {
   const [state, dispatch] = useReducer(reducer, initialState);
   const actions = createActions(dispatch);
 
-  const cards = state.participants.map((p) => <Card key={p.id} participant={p} />);
+  const cards = state.participants.map((p) => {
+    return <Card key={p.id} participant={p} deleteRow={() => dispatch({ type: 'delete-row', id: p.id })} />;
+  });
 
   return (
     <>
