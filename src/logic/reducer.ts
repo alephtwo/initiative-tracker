@@ -2,14 +2,15 @@ import { emptyParticipant, Participant } from '../types/Participant';
 import produce from 'immer';
 import { State } from '../types/State';
 import * as _ from 'lodash';
+import { MaybeInt } from '../types/MaybeInt';
 
 export type Message =
   | { type: 'clear-state' }
   | { type: 'add-row' }
   | { type: 'delete-row'; id: string }
   | { type: 'set-name'; id: string; name: string }
-  | { type: 'set-initiative'; id: string; initiative: string }
-  | { type: 'set-hp'; id: string; hp: string };
+  | { type: 'set-initiative'; id: string; initiative: MaybeInt }
+  | { type: 'set-hp'; id: string; hp: MaybeInt };
 
 export function reducer(state: State, action: Message): State {
   const next = getNextState(state, action);
@@ -19,6 +20,7 @@ export function reducer(state: State, action: Message): State {
 }
 
 function getNextState(state: State, action: Message): State {
+  console.debug(action);
   switch (action.type) {
     case 'clear-state':
       return { participants: [] };
@@ -55,15 +57,15 @@ function setName(state: State, id: string, name: string): State {
   });
 }
 
-function setInitiative(state: State, id: string, initiative: string): State {
+function setInitiative(state: State, id: string, initiative: MaybeInt): State {
   return updateProperty(state, id, (participant) => {
-    participant.initiative = parseInt(initiative);
+    participant.initiative = initiative;
   });
 }
 
-function setHp(state: State, id: string, hp: string): State {
+function setHp(state: State, id: string, hp: MaybeInt): State {
   return updateProperty(state, id, (participant) => {
-    participant.hp = parseInt(hp);
+    participant.hp = hp;
   });
 }
 

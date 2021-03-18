@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { Participant } from '../types/Participant';
 import { Message } from '../logic/reducer';
+import { sanitizeNumber } from '../logic/sanitizeNumber';
 
 interface CardProps {
   participant: Participant;
@@ -24,9 +25,24 @@ export function Card(props: CardProps): JSX.Element {
 export function createCallbacks(dispatch: React.Dispatch<Message>, id: string): CardCallbacks {
   return {
     deleteRow: () => dispatch({ type: 'delete-row', id: id }),
-    setName: (e) => dispatch({ type: 'set-name', id: id, name: e.target.value }),
-    setInitiative: (e) => dispatch({ type: 'set-initiative', id: id, initiative: e.target.value }),
-    setHp: (e) => dispatch({ type: 'set-hp', id: id, hp: e.target.value }),
+    setName: (e) =>
+      dispatch({
+        type: 'set-name',
+        id: id,
+        name: e.target.value,
+      }),
+    setInitiative: (e) =>
+      dispatch({
+        type: 'set-initiative',
+        id: id,
+        initiative: sanitizeNumber(e.target.value, 3),
+      }),
+    setHp: (e) =>
+      dispatch({
+        type: 'set-hp',
+        id: id,
+        hp: sanitizeNumber(e.target.value, 3),
+      }),
   };
 }
 

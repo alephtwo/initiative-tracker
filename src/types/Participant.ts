@@ -1,17 +1,18 @@
 import * as uuid from 'uuid';
+import { MaybeInt } from './MaybeInt';
 
 export interface Participant {
   id: string;
   name: string;
-  initiative: number;
-  hp: number;
+  initiative: MaybeInt;
+  hp: MaybeInt;
 }
 
 export function emptyParticipant(): Participant {
   return {
     id: uuid.v4(),
     name: '',
-    initiative: 0,
-    hp: 0,
+    initiative: '',
+    hp: '',
   };
 }
