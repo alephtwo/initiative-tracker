@@ -4,6 +4,7 @@ import { State } from '../types/State';
 import * as _ from 'lodash';
 
 export type Message =
+  | { type: 'clear-state' }
   | { type: 'add-row' }
   | { type: 'delete-row'; id: string }
   | { type: 'set-name'; id: string; name: string };
@@ -17,6 +18,8 @@ export function reducer(state: State, action: Message): State {
 
 function getNextState(state: State, action: Message): State {
   switch (action.type) {
+    case 'clear-state':
+      return { participants: [] };
     case 'add-row':
       return addRow(state);
     case 'delete-row':

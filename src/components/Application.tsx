@@ -8,7 +8,6 @@ const initialState = getInitialState();
 
 function Application() {
   const [state, dispatch] = useReducer(reducer, initialState);
-  const callbacks = createCallbacks(dispatch);
 
   const cards = state.participants.map((p) => {
     return <Card key={p.id} callbacks={createCardCallbacks(dispatch, p.id)} participant={p} />;
@@ -16,7 +15,8 @@ function Application() {
 
   return (
     <>
-      <button onClick={callbacks.addRow}>Add Row</button>
+      <button onClick={() => dispatch({ type: 'add-row' })}>Add Row</button>
+      <button onClick={() => dispatch({ type: 'clear-state' })}>Clear</button>
       <hr />
       {cards}
     </>
@@ -33,12 +33,6 @@ function getInitialState(): State {
   // Otherwise just return the stuff.
   return {
     participants: [],
-  };
-}
-
-function createCallbacks(dispatch: React.Dispatch<Message>) {
-  return {
-    addRow: () => dispatch({ type: 'add-row' }),
   };
 }
 
