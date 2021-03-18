@@ -7,11 +7,11 @@ export interface Participant {
   hp: number;
 }
 
-export function emptyParticipant (): Participant {
+export function emptyParticipant(): Participant {
   return {
     id: uuid.v4(),
     name: '',
     initiative: 0,
-    hp: 0
+    hp: 0,
   };
 }
