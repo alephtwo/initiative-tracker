@@ -1,9 +1,12 @@
 import * as React from 'react';
 import { useReducer } from 'react';
-import { Message, reducer, State } from '../logic/reducer';
+import { Message, reducer } from '../logic/reducer';
+import { State } from '../types/State';
 import { Card } from './Card';
 
-const initialState = new State();
+const initialState: State = {
+  participants: []
+}
 
 function Application() {
   const [state, dispatch] = useReducer(reducer, initialState);

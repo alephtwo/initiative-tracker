@@ -1,15 +1,12 @@
-import { List, Record } from 'immutable';
-import { Participant } from '../data/Participant';
 import * as uuid from 'uuid';
-
-export class State extends Record({
-  participants: List<Participant>(),
-}) {}
+import { emptyParticipant, Participant } from '../types/Participant';
+import produce from 'immer';
+import { State } from '../types/State';
+import * as _ from  'lodash';
 
 export type Message = { type: 'add-row' } | { type: 'delete-row'; id: string };
 
 export function reducer(state: State, action: Message): State {
-  console.log(state.toJSON());
   switch (action.type) {
     case 'add-row':
       return addRow(state);
@@ -21,15 +18,13 @@ export function reducer(state: State, action: Message): State {
 }
 
 function addRow(state: State): State {
-  const row = new Participant({
-    id: uuid.v4(),
+  return produce(state, next => {
+    next.participants.push(emptyParticipant());
   });
-
-  return state.update('participants', (p) => p.push(row));
 }
 
 function deleteRow(state: State, id: string): State {
-  return state.update('participants', (participants) => {
-    return participants.filterNot((p) => p.id === id);
+  return produce(state, next => {
+    _.remove(next.participants, p => p.id === id);
   });
 }

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Participant } from '../data/Participant';
+import { Participant } from '../types/Participant';
 import { Message } from '../logic/reducer';
 
 interface CardProps {
@@ -13,6 +13,7 @@ export function Card(props: CardProps): JSX.Element {
 
   return (
     <div>
+      <pre>{participant.id}</pre>
       <input type="text" value={participant.name} />
       <input type="text" value={participant.initiative} />
       <input type="text" value={participant.hp} />
