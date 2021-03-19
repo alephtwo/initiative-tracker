@@ -3,7 +3,6 @@ import { Participant } from '../types/Participant';
 import { Message } from '../logic/reducer';
 import { sanitizeNumber } from '../logic/sanitizeNumber';
 import { Button, Grid, makeStyles, TextField, Typography } from '@material-ui/core';
-import DeleteIcon from '@material-ui/icons/Delete';
 
 interface CardProps {
   participant: Participant;
@@ -38,13 +37,17 @@ export function Card(props: CardProps): JSX.Element {
         <TextField fullWidth variant="outlined" label="HP" value={participant.hp} onChange={callbacks.setHp} />
       </Grid>
       <Grid item xs={2}>
-        <Button variant="outlined" color="secondary" onClick={callbacks.deleteRow}>
-          <DeleteIcon /> Delete
+        <Button fullWidth variant="outlined" color="secondary" onClick={callbacks.deleteRow}>
+          Delete
         </Button>
       </Grid>
     </Grid>
   );
 }
+
+export const createCallbacksUsingDispatch = (dispatch: React.Dispatch<Message>) => (id: string): CardCallbacks => {
+  return createCallbacks(dispatch, id);
+};
 
 export function createCallbacks(dispatch: React.Dispatch<Message>, id: string): CardCallbacks {
   return {
@@ -78,7 +81,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-interface CardCallbacks {
+export interface CardCallbacks {
   deleteRow: () => void;
   setName: React.ChangeEventHandler<HTMLInputElement>;
   setInitiative: React.ChangeEventHandler<HTMLInputElement>;

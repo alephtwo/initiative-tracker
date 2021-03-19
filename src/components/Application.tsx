@@ -1,13 +1,12 @@
-import { Button, Container, Grid, makeStyles } from '@material-ui/core';
+import { Container, makeStyles } from '@material-ui/core';
 import * as React from 'react';
 import { useReducer } from 'react';
 import { reducer } from '../logic/reducer';
 import { Participant } from '../types/Participant';
 import { State } from '../types/State';
-import { Card, createCallbacks as createCardCallbacks } from './Card';
-import AddIcon from '@material-ui/icons/Add';
-import ClearIcon from '@material-ui/icons/Clear';
-import SortIcon from '@material-ui/icons/Sort';
+import { Controls, createCallbacks as createControlsCallbacks } from './Controls';
+import { InitiativeCards } from './InitiativeCards';
+import { createCallbacksUsingDispatch } from './Card';
 
 const initialState = getInitialState();
 
@@ -16,46 +15,14 @@ function Application() {
   const initiativeOrder = getInitiativeOrder(state.participants);
   const styles = useStyles();
 
-  const cards = state.participants.map((p) => {
-    return (
-      <Grid item xs={12}>
-        <Card
-          key={p.id}
-          callbacks={createCardCallbacks(dispatch, p.id)}
-          participant={p}
-          order={initiativeOrder[p.initiative || 0]}
-        />
-      </Grid>
-    );
-  });
-
   return (
     <Container className={styles.containerPadding}>
-      <Grid container spacing={1}>
-        <Grid item xs={4}>
-          <Button fullWidth variant="outlined" color="primary" onClick={() => dispatch({ type: 'add-row' })}>
-            <AddIcon /> Add Row
-          </Button>
-        </Grid>
-        <Grid item xs={4}>
-          <Button
-            fullWidth
-            variant="outlined"
-            color="primary"
-            onClick={() => dispatch({ type: 'sort', order: initiativeOrder })}
-          >
-            <SortIcon /> Sort
-          </Button>
-        </Grid>
-        <Grid item xs={4}>
-          <Button fullWidth variant="outlined" color="secondary" onClick={() => dispatch({ type: 'clear-state' })}>
-            <ClearIcon /> Clear
-          </Button>
-        </Grid>
-      </Grid>
-      <Grid container spacing={1} className={styles.extraTopMargin}>
-        {cards}
-      </Grid>
+      <Controls callbacks={createControlsCallbacks(dispatch, initiativeOrder)} />
+      <InitiativeCards
+        createCallbacks={createCallbacksUsingDispatch(dispatch)}
+        participants={state.participants}
+        initiativeOrder={initiativeOrder}
+      />
     </Container>
   );
 }
@@ -86,9 +53,6 @@ function getInitiativeOrder(participants: Array<Participant>): Record<number, nu
 const useStyles = makeStyles((theme) => ({
   containerPadding: {
     padding: theme.spacing(1),
-  },
-  extraTopMargin: {
-    marginTop: theme.spacing(2),
   },
 }));
 
