@@ -21,6 +21,7 @@
   "homepage": "https://github.com/alephtwo/initiative-tracker#readme",
   "dependencies": {
     "@material-ui/core": "4.11.3",
+    "@material-ui/icons": "^4.11.2",
     "immer": "8.0.3",
     "lodash": "4.17.21",
     "react": "17.0.1",

@@ -5,6 +5,9 @@ import { reducer } from '../logic/reducer';
 import { Participant } from '../types/Participant';
 import { State } from '../types/State';
 import { Card, createCallbacks as createCardCallbacks } from './Card';
+import AddIcon from '@material-ui/icons/Add';
+import ClearIcon from '@material-ui/icons/Clear';
+import SortIcon from '@material-ui/icons/Sort';
 
 const initialState = getInitialState();
 
@@ -31,7 +34,7 @@ function Application() {
       <Grid container spacing={1}>
         <Grid item xs={4}>
           <Button fullWidth variant="outlined" color="primary" onClick={() => dispatch({ type: 'add-row' })}>
-            Add Row
+            <AddIcon /> Add Row
           </Button>
         </Grid>
         <Grid item xs={4}>
@@ -41,12 +44,12 @@ function Application() {
             color="primary"
             onClick={() => dispatch({ type: 'sort', order: initiativeOrder })}
           >
-            Sort
+            <SortIcon /> Sort
           </Button>
         </Grid>
         <Grid item xs={4}>
           <Button fullWidth variant="outlined" color="secondary" onClick={() => dispatch({ type: 'clear-state' })}>
-            Clear
+            <ClearIcon /> Clear
           </Button>
         </Grid>
       </Grid>
