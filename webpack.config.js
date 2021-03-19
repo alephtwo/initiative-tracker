@@ -1,32 +1,39 @@
-const path = require('path'),
-  HtmlWebpackPlugin = require('html-webpack-plugin')
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const path = require('path');
 
-const typescript = {
-  test: /\.tsx?$/,
-  use: 'awesome-typescript-loader'
-}
+const paths = {
+  entry: path.resolve(__dirname, 'src', 'index.tsx'),
+  html: path.resolve(__dirname, 'src', 'index.html'),
+  target: path.resolve(__dirname, 'public'),
+};
 
-const css = {
-  test: /\.css$/,
-  use: [ 'style-loader', 'css-loader' ]
-}
+const rules = {
+  typescript: {
+    test: /.tsx?$/,
+    loader: 'ts-loader',
+  },
+};
 
-const html = new HtmlWebpackPlugin({
-  template: 'src/index.html'
-});
+const plugins = {
+  clean: new CleanWebpackPlugin(),
+  html: new HtmlWebpackPlugin({
+    template: paths.html,
+  }),
+};
 
 module.exports = {
-  resolve: {
-    extensions: [ '.tsx', '.ts', '.js' ]
-  },
-  entry: './src/index.tsx',
-  devtool: 'source-map',
+  entry: paths.entry,
   output: {
     filename: 'app.js',
-    path: path.resolve(__dirname, 'dist')
+    path: paths.target,
+  },
+  devtool: 'source-map',
+  resolve: {
+    extensions: ['.ts', '.tsx', '.js'],
   },
   module: {
-    rules: [typescript, css]
+    rules: [rules.typescript],
   },
-  plugins: [html]
-}
+  plugins: [plugins.clean, plugins.html],
+};
