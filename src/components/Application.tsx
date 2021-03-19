@@ -15,7 +15,7 @@ function Application() {
 
   const cards = state.participants.map((p) => {
     return (
-      <Grid item>
+      <Grid item xs={12}>
         <Card
           key={p.id}
           callbacks={createCardCallbacks(dispatch, p.id)}
