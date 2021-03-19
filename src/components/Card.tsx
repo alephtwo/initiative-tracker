@@ -2,6 +2,7 @@ import * as React from 'react';
 import { Participant } from '../types/Participant';
 import { Message } from '../logic/reducer';
 import { sanitizeNumber } from '../logic/sanitizeNumber';
+import { Button, Grid, makeStyles, TextField, Typography } from '@material-ui/core';
 
 interface CardProps {
   participant: Participant;
@@ -11,15 +12,35 @@ interface CardProps {
 
 export function Card(props: CardProps): JSX.Element {
   const { callbacks, order, participant } = props;
+  const styles = useStyles();
 
   return (
-    <div>
-      <span>{order}</span>
-      <input type="text" value={participant.name} onChange={callbacks.setName} />
-      <input type="text" value={participant.initiative} onChange={callbacks.setInitiative} />
-      <input type="text" value={participant.hp} onChange={callbacks.setHp} />
-      <button onClick={callbacks.deleteRow}>Delete</button>
-    </div>
+    <Grid container spacing={1} alignItems="center">
+      <Grid item>
+        <Typography variant="body1" className={styles.initiativeOrder}>
+          {order}
+        </Typography>
+      </Grid>
+      <Grid item>
+        <TextField variant="outlined" label="Name" value={participant.name} onChange={callbacks.setName} />
+      </Grid>
+      <Grid item>
+        <TextField
+          variant="outlined"
+          label="Initiative"
+          value={participant.initiative}
+          onChange={callbacks.setInitiative}
+        />
+      </Grid>
+      <Grid item>
+        <TextField variant="outlined" label="HP" value={participant.hp} onChange={callbacks.setHp} />
+      </Grid>
+      <Grid item>
+        <Button variant="outlined" color="secondary" onClick={callbacks.deleteRow}>
+          Delete
+        </Button>
+      </Grid>
+    </Grid>
   );
 }
 
@@ -46,6 +67,15 @@ export function createCallbacks(dispatch: React.Dispatch<Message>, id: string): 
       }),
   };
 }
+
+const useStyles = makeStyles((theme) => ({
+  initiativeOrder: {
+    height: '100%',
+    width: '50px',
+    textAlign: 'center',
+    fontWeight: 'bold',
+  },
+}));
 
 interface CardCallbacks {
   deleteRow: () => void;
