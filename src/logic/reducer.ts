@@ -7,6 +7,7 @@ import { MaybeInt } from '../types/MaybeInt';
 export type Message =
   | { type: 'clear-state' }
   | { type: 'add-row' }
+  | { type: 'sort'; order: Record<number, number> }
   | { type: 'delete-row'; id: string }
   | { type: 'set-name'; id: string; name: string }
   | { type: 'set-initiative'; id: string; initiative: MaybeInt }
@@ -26,6 +27,8 @@ function getNextState(state: State, action: Message): State {
       return { participants: [] };
     case 'add-row':
       return addRow(state);
+    case 'sort':
+      return sort(state, action.order);
     case 'delete-row':
       return deleteRow(state, action.id);
     case 'set-name':
@@ -42,6 +45,16 @@ function getNextState(state: State, action: Message): State {
 function addRow(state: State): State {
   return produce(state, (next) => {
     next.participants.push(emptyParticipant());
+  });
+}
+
+function sort(state: State, order: Record<number, number>) {
+  console.debug(order);
+  return produce(state, (next) => {
+    next.participants = _.sortBy(next.participants, [
+      // first by order (descending)...
+      (p) => order[p.initiative || 0],
+    ]);
   });
 }
 

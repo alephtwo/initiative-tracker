@@ -6,14 +6,15 @@ import { sanitizeNumber } from '../logic/sanitizeNumber';
 interface CardProps {
   participant: Participant;
   callbacks: CardCallbacks;
+  order: number;
 }
 
 export function Card(props: CardProps): JSX.Element {
-  const { callbacks, participant } = props;
+  const { callbacks, order, participant } = props;
 
   return (
     <div>
-      <pre>{participant.id}</pre>
+      <span>{order}</span>
       <input type="text" value={participant.name} onChange={callbacks.setName} />
       <input type="text" value={participant.initiative} onChange={callbacks.setInitiative} />
       <input type="text" value={participant.hp} onChange={callbacks.setHp} />
