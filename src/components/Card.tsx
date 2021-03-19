@@ -16,27 +16,28 @@ export function Card(props: CardProps): JSX.Element {
 
   return (
     <Grid container spacing={1} alignItems="center">
-      <Grid item>
+      <Grid item xs={1}>
         <Typography variant="body1" className={styles.initiativeOrder}>
           {order}
         </Typography>
       </Grid>
-      <Grid item>
-        <TextField variant="outlined" label="Name" value={participant.name} onChange={callbacks.setName} />
+      <Grid item xs={5}>
+        <TextField fullWidth variant="outlined" label="Name" value={participant.name} onChange={callbacks.setName} />
       </Grid>
-      <Grid item>
+      <Grid item xs={2}>
         <TextField
+          fullWidth
           variant="outlined"
           label="Initiative"
           value={participant.initiative}
           onChange={callbacks.setInitiative}
         />
       </Grid>
-      <Grid item>
-        <TextField variant="outlined" label="HP" value={participant.hp} onChange={callbacks.setHp} />
+      <Grid item xs={2}>
+        <TextField fullWidth variant="outlined" label="HP" value={participant.hp} onChange={callbacks.setHp} />
       </Grid>
-      <Grid item>
-        <Button variant="outlined" color="secondary" onClick={callbacks.deleteRow}>
+      <Grid item xs={2}>
+        <Button fullWidth variant="outlined" color="secondary" onClick={callbacks.deleteRow}>
           Delete
         </Button>
       </Grid>
@@ -71,7 +72,6 @@ export function createCallbacks(dispatch: React.Dispatch<Message>, id: string): 
 const useStyles = makeStyles((theme) => ({
   initiativeOrder: {
     height: '100%',
-    width: '50px',
     textAlign: 'center',
     fontWeight: 'bold',
   },

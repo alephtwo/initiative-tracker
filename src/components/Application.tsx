@@ -15,35 +15,44 @@ function Application() {
 
   const cards = state.participants.map((p) => {
     return (
-      <Card
-        key={p.id}
-        callbacks={createCardCallbacks(dispatch, p.id)}
-        participant={p}
-        order={initiativeOrder[p.initiative || 0]}
-      />
+      <Grid item>
+        <Card
+          key={p.id}
+          callbacks={createCardCallbacks(dispatch, p.id)}
+          participant={p}
+          order={initiativeOrder[p.initiative || 0]}
+        />
+      </Grid>
     );
   });
 
   return (
     <Container className={styles.containerPadding}>
       <Grid container spacing={1}>
-        <Grid item>
-          <Button variant="outlined" color="primary" onClick={() => dispatch({ type: 'add-row' })}>
+        <Grid item xs={4}>
+          <Button fullWidth variant="outlined" color="primary" onClick={() => dispatch({ type: 'add-row' })}>
             Add Row
           </Button>
         </Grid>
-        <Grid item>
-          <Button variant="outlined" color="primary" onClick={() => dispatch({ type: 'sort', order: initiativeOrder })}>
+        <Grid item xs={4}>
+          <Button
+            fullWidth
+            variant="outlined"
+            color="primary"
+            onClick={() => dispatch({ type: 'sort', order: initiativeOrder })}
+          >
             Sort
           </Button>
         </Grid>
-        <Grid item>
-          <Button variant="outlined" color="secondary" onClick={() => dispatch({ type: 'clear-state' })}>
+        <Grid item xs={4}>
+          <Button fullWidth variant="outlined" color="secondary" onClick={() => dispatch({ type: 'clear-state' })}>
             Clear
           </Button>
         </Grid>
       </Grid>
-      {cards}
+      <Grid container spacing={1} className={styles.extraTopMargin}>
+        {cards}
+      </Grid>
     </Container>
   );
 }
@@ -74,6 +83,9 @@ function getInitiativeOrder(participants: Array<Participant>): Record<number, nu
 const useStyles = makeStyles((theme) => ({
   containerPadding: {
     padding: theme.spacing(1),
+  },
+  extraTopMargin: {
+    marginTop: theme.spacing(2),
   },
 }));
 
