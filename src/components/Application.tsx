@@ -43,7 +43,7 @@ function getInitialState(): State {
 function getInitiativeOrder(participants: Array<Participant>): Record<number, number> {
   const initiatives = new Set(participants.map((p) => p.initiative || 0));
   return Array.from(initiatives)
-    .sort()
+    .sort((a, b) => a - b)
     .reverse()
     .reduce((acc, p, i) => {
       return Object.assign(acc, { [p]: i + 1 });
