@@ -2,7 +2,8 @@ import * as React from 'react';
 import { Participant } from '../types/Participant';
 import { Message } from '../logic/reducer';
 import { sanitizeNumber } from '../logic/sanitizeNumber';
-import { Button, Grid, makeStyles, TextField, Typography } from '@material-ui/core';
+import { Box, Button, Grid, makeStyles, TextField, Typography } from '@material-ui/core';
+import { Delete as DeleteIcon } from '@material-ui/icons';
 
 interface InitiativeBlockProps {
   participant: Participant;
@@ -15,13 +16,15 @@ export function InitiativeBlock(props: InitiativeBlockProps): JSX.Element {
   const styles = useStyles();
 
   return (
-    <Grid container spacing={1} alignItems="center">
-      <Grid item xs={1}>
-        <Typography variant="body1" className={styles.initiativeOrder}>
-          {order}
-        </Typography>
+    <Grid container direction="row" spacing={1} alignItems="stretch">
+      <Grid container direction="row" xs={1} justify="center" alignItems="center">
+        <Grid item>
+          <Typography variant="body1" className={styles.initiativeOrder}>
+            {order}
+          </Typography>
+        </Grid>
       </Grid>
-      <Grid item xs={5}>
+      <Grid item xs={6}>
         <TextField
           fullWidth
           variant="outlined"
@@ -43,9 +46,9 @@ export function InitiativeBlock(props: InitiativeBlockProps): JSX.Element {
       <Grid item xs={2}>
         <TextField fullWidth variant="outlined" label="HP" value={participant.hp} onChange={callbacks.setHp} />
       </Grid>
-      <Grid item xs={2}>
-        <Button fullWidth variant="outlined" color="secondary" onClick={callbacks.deleteRow}>
-          Delete
+      <Grid item xs={1}>
+        <Button className={styles.button} fullWidth variant="outlined" color="secondary" onClick={callbacks.deleteRow}>
+          <DeleteIcon />
         </Button>
       </Grid>
     </Grid>
@@ -84,9 +87,10 @@ export function createCallbacks(dispatch: React.Dispatch<Message>, id: string): 
 
 const useStyles = makeStyles((theme) => ({
   initiativeOrder: {
-    height: '100%',
-    textAlign: 'center',
     fontWeight: 'bold',
+  },
+  button: {
+    minHeight: '100%',
   },
 }));
 
