@@ -22,7 +22,14 @@ export function Card(props: CardProps): JSX.Element {
         </Typography>
       </Grid>
       <Grid item xs={5}>
-        <TextField fullWidth variant="outlined" label="Name" value={participant.name} onChange={callbacks.setName} />
+        <TextField
+          fullWidth
+          variant="outlined"
+          label="Name"
+          value={participant.name}
+          onChange={callbacks.setName}
+          placeholder={participant.placeholder}
+        />
       </Grid>
       <Grid item xs={2}>
         <TextField
