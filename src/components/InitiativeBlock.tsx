@@ -4,13 +4,13 @@ import { Message } from '../logic/reducer';
 import { sanitizeNumber } from '../logic/sanitizeNumber';
 import { Button, Grid, makeStyles, TextField, Typography } from '@material-ui/core';
 
-interface CardProps {
+interface InitiativeBlockProps {
   participant: Participant;
-  callbacks: CardCallbacks;
+  callbacks: InitiativeBlockCallbacks;
   order: number;
 }
 
-export function Card(props: CardProps): JSX.Element {
+export function InitiativeBlock(props: InitiativeBlockProps): JSX.Element {
   const { callbacks, order, participant } = props;
   const styles = useStyles();
 
@@ -52,11 +52,13 @@ export function Card(props: CardProps): JSX.Element {
   );
 }
 
-export const createCallbacksUsingDispatch = (dispatch: React.Dispatch<Message>) => (id: string): CardCallbacks => {
+export const createCallbacksUsingDispatch = (dispatch: React.Dispatch<Message>) => (
+  id: string
+): InitiativeBlockCallbacks => {
   return createCallbacks(dispatch, id);
 };
 
-export function createCallbacks(dispatch: React.Dispatch<Message>, id: string): CardCallbacks {
+export function createCallbacks(dispatch: React.Dispatch<Message>, id: string): InitiativeBlockCallbacks {
   return {
     deleteRow: () => dispatch({ type: 'delete-row', id: id }),
     setName: (e) =>
@@ -88,7 +90,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export interface CardCallbacks {
+export interface InitiativeBlockCallbacks {
   deleteRow: () => void;
   setName: React.ChangeEventHandler<HTMLInputElement>;
   setInitiative: React.ChangeEventHandler<HTMLInputElement>;

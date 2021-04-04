@@ -5,8 +5,8 @@ import { reducer } from '../logic/reducer';
 import { Participant } from '../types/Participant';
 import { State } from '../types/State';
 import { Controls, createCallbacks as createControlsCallbacks } from './Controls';
-import { InitiativeCards } from './InitiativeCards';
-import { createCallbacksUsingDispatch } from './Card';
+import { InitiativeBlocks } from './InitiativeBlocks';
+import { createCallbacksUsingDispatch } from './InitiativeBlock';
 
 const initialState = getInitialState();
 
@@ -18,7 +18,7 @@ function Application() {
   return (
     <Container className={styles.containerPadding}>
       <Controls callbacks={createControlsCallbacks(dispatch, initiativeOrder)} />
-      <InitiativeCards
+      <InitiativeBlocks
         createCallbacks={createCallbacksUsingDispatch(dispatch)}
         participants={state.participants}
         initiativeOrder={initiativeOrder}

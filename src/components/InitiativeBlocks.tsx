@@ -1,21 +1,21 @@
 import * as React from 'react';
 import { Grid, makeStyles } from '@material-ui/core';
 import { Participant } from '../types/Participant';
-import { Card, CardCallbacks } from './Card';
+import { InitiativeBlock, InitiativeBlockCallbacks } from './InitiativeBlock';
 
-interface InitiativeCardProps {
+interface InitiativeBlocksProps {
   participants: Array<Participant>;
   initiativeOrder: Record<number, number>;
-  createCallbacks: (id: string) => CardCallbacks;
+  createCallbacks: (id: string) => InitiativeBlockCallbacks;
 }
 
-export function InitiativeCards(props: InitiativeCardProps) {
+export function InitiativeBlocks(props: InitiativeBlocksProps) {
   const styles = useStyles();
 
-  const cards = props.participants.map((p) => {
+  const blocks = props.participants.map((p) => {
     return (
       <Grid item xs={12}>
-        <Card
+        <InitiativeBlock
           key={p.id}
           callbacks={props.createCallbacks(p.id)}
           participant={p}
@@ -27,7 +27,7 @@ export function InitiativeCards(props: InitiativeCardProps) {
 
   return (
     <Grid container spacing={1} className={styles.extraTopMargin}>
-      {cards}
+      {blocks}
     </Grid>
   );
 }
