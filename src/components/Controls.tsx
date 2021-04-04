@@ -15,17 +15,17 @@ export function Controls(props: ControlsProps): JSX.Element {
   return (
     <Grid container spacing={1}>
       <Grid item xs={4}>
-        <Button fullWidth variant="outlined" color="primary" onClick={callbacks.addRow}>
+        <Button fullWidth variant="contained" color="primary" onClick={callbacks.addRow}>
           <AddIcon /> Add Row
         </Button>
       </Grid>
       <Grid item xs={4}>
-        <Button fullWidth variant="outlined" color="primary" onClick={callbacks.sort}>
+        <Button fullWidth variant="contained" color="primary" onClick={callbacks.sort}>
           <SortIcon /> Sort
         </Button>
       </Grid>
       <Grid item xs={4}>
-        <Button fullWidth variant="outlined" color="secondary" onClick={callbacks.clear}>
+        <Button fullWidth variant="contained" color="secondary" onClick={callbacks.clear}>
           <ClearIcon /> Clear
         </Button>
       </Grid>

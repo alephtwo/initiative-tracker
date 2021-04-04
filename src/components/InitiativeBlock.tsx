@@ -47,7 +47,7 @@ export function InitiativeBlock(props: InitiativeBlockProps): JSX.Element {
         <TextField fullWidth variant="outlined" label="HP" value={participant.hp} onChange={callbacks.setHp} />
       </Grid>
       <Grid item xs={1}>
-        <Button className={styles.button} fullWidth variant="outlined" color="secondary" onClick={callbacks.deleteRow}>
+        <Button className={styles.button} fullWidth variant="contained" color="secondary" onClick={callbacks.deleteRow}>
           <DeleteIcon />
         </Button>
       </Grid>
