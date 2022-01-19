@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Grid, makeStyles } from '@material-ui/core';
+import { Grid } from '@mui/material';
 import { Participant } from '../types/Participant';
 import { InitiativeBlock, InitiativeBlockCallbacks } from './InitiativeBlock';
 
@@ -10,8 +10,6 @@ interface InitiativeBlocksProps {
 }
 
 export function InitiativeBlocks(props: InitiativeBlocksProps) {
-  const styles = useStyles();
-
   const blocks = props.participants.map((p) => {
     return (
       <Grid item xs={12}>
@@ -26,14 +24,14 @@ export function InitiativeBlocks(props: InitiativeBlocksProps) {
   });
 
   return (
-    <Grid container spacing={1} className={styles.extraTopMargin}>
+    <Grid container spacing={1} sx={styles.extraTopMargin}>
       {blocks}
     </Grid>
   );
 }
 
-const useStyles = makeStyles((theme) => ({
+const styles = {
   extraTopMargin: {
-    marginTop: theme.spacing(2),
+    marginTop: 2,
   },
-}));
+};

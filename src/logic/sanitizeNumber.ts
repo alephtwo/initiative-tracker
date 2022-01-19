@@ -1,4 +1,3 @@
-import _ = require('lodash');
 import { MaybeInt } from '../types/MaybeInt';
 
 export function sanitizeNumber(input: string, length: number): MaybeInt {
@@ -7,5 +6,5 @@ export function sanitizeNumber(input: string, length: number): MaybeInt {
     return '';
   }
 
-  return parseInt(digitsOnly.substr(0, length));
+  return parseInt(digitsOnly.substring(0, length));
 }

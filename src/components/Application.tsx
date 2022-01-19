@@ -1,4 +1,4 @@
-import { Container, makeStyles } from '@material-ui/core';
+import { Container } from '@mui/material';
 import * as React from 'react';
 import { useReducer } from 'react';
 import { reducer } from '../logic/reducer';
@@ -13,10 +13,13 @@ const initialState = getInitialState();
 function Application() {
   const [state, dispatch] = useReducer(reducer, initialState);
   const initiativeOrder = getInitiativeOrder(state.participants);
-  const styles = useStyles();
 
   return (
-    <Container className={styles.containerPadding}>
+    <Container
+      sx={{
+        padding: 1,
+      }}
+    >
       <Controls callbacks={createControlsCallbacks(dispatch, initiativeOrder)} />
       <InitiativeBlocks
         createCallbacks={createCallbacksUsingDispatch(dispatch)}
@@ -31,7 +34,7 @@ function getInitialState(): State {
   const stored = localStorage.getItem('state');
   if (stored) {
     // If the state is stored, use it.
-    return JSON.parse(stored);
+    return JSON.parse(stored) as State;
   }
 
   // Otherwise just return the stuff.
@@ -49,11 +52,5 @@ function getInitiativeOrder(participants: Array<Participant>): Record<number, nu
       return Object.assign(acc, { [p]: i + 1 });
     }, {});
 }
-
-const useStyles = makeStyles((theme) => ({
-  containerPadding: {
-    padding: theme.spacing(1),
-  },
-}));
 
 export default Application;

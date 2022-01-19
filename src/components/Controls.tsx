@@ -1,8 +1,7 @@
 import * as React from 'react';
-import { Button, Grid } from '@material-ui/core';
-import AddIcon from '@material-ui/icons/Add';
-import ClearIcon from '@material-ui/icons/Clear';
-import SortIcon from '@material-ui/icons/Sort';
+import { Button, Grid } from '@mui/material';
+import { Add as AddIcon, Clear as ClearIcon, Sort as SortIcon } from '@mui/icons-material';
+
 import { Message } from '../logic/reducer';
 
 interface ControlsProps {

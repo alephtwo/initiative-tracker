@@ -1,10 +1,9 @@
-import { createMuiTheme, CssBaseline, MuiThemeProvider } from '@material-ui/core';
-import * as Colors from '@material-ui/core/colors';
+import { CssBaseline, colors as Colors, createTheme, ThemeProvider } from '@mui/material';
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import Application from './components/Application';
 
-const theme = createMuiTheme({
+const theme = createTheme({
   palette: {
     primary: Colors.blueGrey,
     secondary: Colors.red,
@@ -12,10 +11,10 @@ const theme = createMuiTheme({
 });
 
 const app = (
-  <MuiThemeProvider theme={theme}>
+  <ThemeProvider theme={theme}>
     <CssBaseline />
     <Application />
-  </MuiThemeProvider>
+  </ThemeProvider>
 );
 const mount = document.getElementById('app');
 

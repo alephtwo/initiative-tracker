@@ -2,8 +2,8 @@ import * as React from 'react';
 import { Participant } from '../types/Participant';
 import { Message } from '../logic/reducer';
 import { sanitizeNumber } from '../logic/sanitizeNumber';
-import { Box, Button, Grid, makeStyles, TextField, Typography } from '@material-ui/core';
-import { Delete as DeleteIcon } from '@material-ui/icons';
+import { Button, Grid, TextField, Typography } from '@mui/material';
+import { Delete as DeleteIcon } from '@mui/icons-material';
 
 interface InitiativeBlockProps {
   participant: Participant;
@@ -13,13 +13,12 @@ interface InitiativeBlockProps {
 
 export function InitiativeBlock(props: InitiativeBlockProps): JSX.Element {
   const { callbacks, order, participant } = props;
-  const styles = useStyles();
 
   return (
     <Grid container direction="row" spacing={1} alignItems="stretch">
-      <Grid container direction="row" xs={1} justify="center" alignItems="center">
+      <Grid container direction="row" justifyContent="center" xs={1} alignItems="center">
         <Grid item>
-          <Typography variant="body1" className={styles.initiativeOrder}>
+          <Typography variant="body1" sx={styles.initiativeOrder}>
             {order}
           </Typography>
         </Grid>
@@ -47,7 +46,7 @@ export function InitiativeBlock(props: InitiativeBlockProps): JSX.Element {
         <TextField fullWidth variant="outlined" label="HP" value={participant.hp} onChange={callbacks.setHp} />
       </Grid>
       <Grid item xs={1}>
-        <Button className={styles.button} fullWidth variant="contained" color="secondary" onClick={callbacks.deleteRow}>
+        <Button sx={styles.button} fullWidth variant="contained" color="secondary" onClick={callbacks.deleteRow}>
           <DeleteIcon />
         </Button>
       </Grid>
@@ -55,11 +54,11 @@ export function InitiativeBlock(props: InitiativeBlockProps): JSX.Element {
   );
 }
 
-export const createCallbacksUsingDispatch = (dispatch: React.Dispatch<Message>) => (
-  id: string
-): InitiativeBlockCallbacks => {
-  return createCallbacks(dispatch, id);
-};
+export const createCallbacksUsingDispatch =
+  (dispatch: React.Dispatch<Message>) =>
+  (id: string): InitiativeBlockCallbacks => {
+    return createCallbacks(dispatch, id);
+  };
 
 export function createCallbacks(dispatch: React.Dispatch<Message>, id: string): InitiativeBlockCallbacks {
   return {
@@ -85,14 +84,14 @@ export function createCallbacks(dispatch: React.Dispatch<Message>, id: string): 
   };
 }
 
-const useStyles = makeStyles((theme) => ({
+const styles = {
   initiativeOrder: {
     fontWeight: 'bold',
   },
   button: {
     minHeight: '100%',
   },
-}));
+};
 
 export interface InitiativeBlockCallbacks {
   deleteRow: () => void;
