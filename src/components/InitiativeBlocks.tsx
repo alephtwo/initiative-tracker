@@ -12,7 +12,7 @@ interface InitiativeBlocksProps {
 export function InitiativeBlocks(props: InitiativeBlocksProps) {
   const blocks = props.participants.map((p) => {
     return (
-      <Grid item xs={12}>
+      <Grid item xs={12} key={`block-${p.id}`}>
         <InitiativeBlock
           key={p.id}
           callbacks={props.createCallbacks(p.id)}

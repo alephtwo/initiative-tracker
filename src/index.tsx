@@ -1,6 +1,6 @@
 import { CssBaseline, colors as Colors, createTheme, ThemeProvider } from '@mui/material';
 import * as React from 'react';
-import * as ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom/client';
 import Application from './components/Application';
 
 const theme = createTheme({
@@ -16,6 +16,6 @@ const app = (
     <Application />
   </ThemeProvider>
 );
-const mount = document.getElementById('app');
 
-ReactDOM.render(app, mount);
+const root = createRoot(document.getElementById('app') as HTMLDivElement);
+root.render(app);

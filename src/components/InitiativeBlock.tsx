@@ -16,7 +16,7 @@ export function InitiativeBlock(props: InitiativeBlockProps): JSX.Element {
 
   return (
     <Grid container direction="row" spacing={1} alignItems="stretch">
-      <Grid container direction="row" justifyContent="center" xs={1} alignItems="center">
+      <Grid container item direction="row" justifyContent="center" xs={1} alignItems="center">
         <Grid item>
           <Typography variant="body1" sx={styles.initiativeOrder}>
             {order}

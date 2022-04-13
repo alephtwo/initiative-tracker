@@ -21,7 +21,6 @@ export function reducer(state: State, action: Message): State {
 }
 
 function getNextState(state: State, action: Message): State {
-  console.debug(action);
   switch (action.type) {
     case 'clear-state':
       return { participants: [] };
@@ -49,7 +48,6 @@ function addRow(state: State): State {
 }
 
 function sort(state: State, order: Record<number, number>) {
-  console.debug(order);
   return produce(state, (next) => {
     next.participants = _.sortBy(next.participants, [
       // first by order (descending)...
