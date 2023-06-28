@@ -1,5 +1,5 @@
 import { emptyParticipant, Participant } from '../types/Participant';
-import produce from 'immer';
+import { produce } from 'immer';
 import { State } from '../types/State';
 import * as _ from 'lodash';
 import { MaybeInt } from '../types/MaybeInt';
