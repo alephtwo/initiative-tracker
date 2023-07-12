@@ -40,7 +40,7 @@ interface ControlsCallbacks {
 
 export function createCallbacks(
   dispatch: React.Dispatch<Message>,
-  initiativeOrder: Record<number, number>
+  initiativeOrder: Record<number, number>,
 ): ControlsCallbacks {
   return {
     addRow: () => dispatch({ type: 'add-row' }),
