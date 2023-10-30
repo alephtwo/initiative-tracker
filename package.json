@@ -22,8 +22,8 @@
   "dependencies": {
     "@emotion/react": "11.11.1",
     "@emotion/styled": "11.11.0",
-    "@mui/icons-material": "5.14.12",
-    "@mui/material": "5.14.12",
+    "@mui/icons-material": "5.14.15",
+    "@mui/material": "5.14.15",
     "immer": "10.0.3",
     "lodash": "4.17.21",
     "react": "18.2.0",
@@ -31,19 +31,19 @@
     "uuid": "9.0.1"
   },
   "devDependencies": {
-    "@types/lodash": "4.14.199",
-    "@types/react": "18.2.27",
-    "@types/react-dom": "18.2.12",
-    "@types/uuid": "9.0.5",
-    "@typescript-eslint/eslint-plugin": "6.7.5",
-    "@typescript-eslint/parser": "6.7.5",
+    "@types/lodash": "4.14.200",
+    "@types/react": "18.2.33",
+    "@types/react-dom": "18.2.14",
+    "@types/uuid": "9.0.6",
+    "@typescript-eslint/eslint-plugin": "6.9.1",
+    "@typescript-eslint/parser": "6.9.1",
     "clean-webpack-plugin": "4.0.0",
-    "eslint": "8.51.0",
+    "eslint": "8.52.0",
     "html-webpack-plugin": "5.5.3",
     "prettier": "3.0.3",
     "ts-loader": "9.5.0",
     "typescript": "5.2.2",
-    "webpack": "5.88.2",
+    "webpack": "5.89.0",
     "webpack-cli": "5.1.4",
     "webpack-dev-server": "4.15.1"
   }
