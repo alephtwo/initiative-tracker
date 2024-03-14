@@ -1,6 +1,6 @@
-import * as uuid from 'uuid';
-import randomName from '../logic/randomName';
-import { MaybeInt } from './MaybeInt';
+import * as uuid from "uuid";
+import randomName from "../logic/randomName";
+import { MaybeInt } from "./MaybeInt";
 
 export interface Participant {
   id: string;
@@ -13,9 +13,9 @@ export interface Participant {
 export function emptyParticipant(): Participant {
   return {
     id: uuid.v4(),
-    name: '',
+    name: "",
     placeholder: randomName(),
-    initiative: '',
-    hp: '',
+    initiative: "",
+    hp: "",
   };
 }

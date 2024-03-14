@@ -1,40 +1,40 @@
-import { emptyParticipant, Participant } from '../types/Participant';
-import { produce } from 'immer';
-import { State } from '../types/State';
-import * as _ from 'lodash';
-import { MaybeInt } from '../types/MaybeInt';
+import { emptyParticipant, Participant } from "../types/Participant";
+import { produce } from "immer";
+import { State } from "../types/State";
+import * as _ from "lodash";
+import { MaybeInt } from "../types/MaybeInt";
 
 export type Message =
-  | { type: 'clear-state' }
-  | { type: 'add-row' }
-  | { type: 'sort'; order: Record<number, number> }
-  | { type: 'delete-row'; id: string }
-  | { type: 'set-name'; id: string; name: string }
-  | { type: 'set-initiative'; id: string; initiative: MaybeInt }
-  | { type: 'set-hp'; id: string; hp: MaybeInt };
+  | { type: "clear-state" }
+  | { type: "add-row" }
+  | { type: "sort"; order: Record<number, number> }
+  | { type: "delete-row"; id: string }
+  | { type: "set-name"; id: string; name: string }
+  | { type: "set-initiative"; id: string; initiative: MaybeInt }
+  | { type: "set-hp"; id: string; hp: MaybeInt };
 
 export function reducer(state: State, action: Message): State {
   const next = getNextState(state, action);
   // Persist the new state to localstorage
-  localStorage.setItem('state', JSON.stringify(next));
+  localStorage.setItem("state", JSON.stringify(next));
   return next;
 }
 
 function getNextState(state: State, action: Message): State {
   switch (action.type) {
-    case 'clear-state':
+    case "clear-state":
       return { participants: [] };
-    case 'add-row':
+    case "add-row":
       return addRow(state);
-    case 'sort':
+    case "sort":
       return sort(state, action.order);
-    case 'delete-row':
+    case "delete-row":
       return deleteRow(state, action.id);
-    case 'set-name':
+    case "set-name":
       return setName(state, action.id, action.name);
-    case 'set-initiative':
+    case "set-initiative":
       return setInitiative(state, action.id, action.initiative);
-    case 'set-hp':
+    case "set-hp":
       return setHp(state, action.id, action.hp);
     default:
       return state;

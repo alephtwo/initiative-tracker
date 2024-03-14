@@ -1,7 +1,7 @@
-import * as React from 'react';
-import { Grid } from '@mui/material';
-import { Participant } from '../types/Participant';
-import { InitiativeBlock, InitiativeBlockCallbacks } from './InitiativeBlock';
+import * as React from "react";
+import { Grid } from "@mui/material";
+import { Participant } from "../types/Participant";
+import { InitiativeBlock, InitiativeBlockCallbacks } from "./InitiativeBlock";
 
 interface InitiativeBlocksProps {
   participants: Array<Participant>;

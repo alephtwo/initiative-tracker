@@ -1,9 +1,9 @@
-import * as React from 'react';
-import { Participant } from '../types/Participant';
-import { Message } from '../logic/reducer';
-import { sanitizeNumber } from '../logic/sanitizeNumber';
-import { Button, Grid, TextField, Typography } from '@mui/material';
-import { Delete as DeleteIcon } from '@mui/icons-material';
+import * as React from "react";
+import { Participant } from "../types/Participant";
+import { Message } from "../logic/reducer";
+import { sanitizeNumber } from "../logic/sanitizeNumber";
+import { Button, Grid, TextField, Typography } from "@mui/material";
+import { Delete as DeleteIcon } from "@mui/icons-material";
 
 interface InitiativeBlockProps {
   participant: Participant;
@@ -62,22 +62,22 @@ export const createCallbacksUsingDispatch =
 
 export function createCallbacks(dispatch: React.Dispatch<Message>, id: string): InitiativeBlockCallbacks {
   return {
-    deleteRow: () => dispatch({ type: 'delete-row', id: id }),
+    deleteRow: () => dispatch({ type: "delete-row", id: id }),
     setName: (e) =>
       dispatch({
-        type: 'set-name',
+        type: "set-name",
         id: id,
         name: e.target.value,
       }),
     setInitiative: (e) =>
       dispatch({
-        type: 'set-initiative',
+        type: "set-initiative",
         id: id,
         initiative: sanitizeNumber(e.target.value, 3),
       }),
     setHp: (e) =>
       dispatch({
-        type: 'set-hp',
+        type: "set-hp",
         id: id,
         hp: sanitizeNumber(e.target.value, 3),
       }),
@@ -86,10 +86,10 @@ export function createCallbacks(dispatch: React.Dispatch<Message>, id: string): 
 
 const styles = {
   initiativeOrder: {
-    fontWeight: 'bold',
+    fontWeight: "bold",
   },
   button: {
-    minHeight: '100%',
+    minHeight: "100%",
   },
 };
 

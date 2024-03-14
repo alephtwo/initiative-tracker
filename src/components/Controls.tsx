@@ -1,8 +1,8 @@
-import * as React from 'react';
-import { Button, Grid } from '@mui/material';
-import { Add as AddIcon, Clear as ClearIcon, Sort as SortIcon } from '@mui/icons-material';
+import * as React from "react";
+import { Button, Grid } from "@mui/material";
+import { Add as AddIcon, Clear as ClearIcon, Sort as SortIcon } from "@mui/icons-material";
 
-import { Message } from '../logic/reducer';
+import { Message } from "../logic/reducer";
 
 interface ControlsProps {
   callbacks: ControlsCallbacks;
@@ -43,8 +43,8 @@ export function createCallbacks(
   initiativeOrder: Record<number, number>,
 ): ControlsCallbacks {
   return {
-    addRow: () => dispatch({ type: 'add-row' }),
-    sort: () => dispatch({ type: 'sort', order: initiativeOrder }),
-    clear: () => dispatch({ type: 'clear-state' }),
+    addRow: () => dispatch({ type: "add-row" }),
+    sort: () => dispatch({ type: "sort", order: initiativeOrder }),
+    clear: () => dispatch({ type: "clear-state" }),
   };
 }

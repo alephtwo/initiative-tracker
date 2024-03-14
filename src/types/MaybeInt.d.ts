@@ -1,1 +1,1 @@
-export type MaybeInt = number | '';
+export type MaybeInt = number | "";

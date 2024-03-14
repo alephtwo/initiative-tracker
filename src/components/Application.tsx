@@ -1,12 +1,12 @@
-import { Container } from '@mui/material';
-import * as React from 'react';
-import { useReducer } from 'react';
-import { reducer } from '../logic/reducer';
-import { Participant } from '../types/Participant';
-import { State } from '../types/State';
-import { Controls, createCallbacks as createControlsCallbacks } from './Controls';
-import { InitiativeBlocks } from './InitiativeBlocks';
-import { createCallbacksUsingDispatch } from './InitiativeBlock';
+import { Container } from "@mui/material";
+import * as React from "react";
+import { useReducer } from "react";
+import { reducer } from "../logic/reducer";
+import { Participant } from "../types/Participant";
+import { State } from "../types/State";
+import { Controls, createCallbacks as createControlsCallbacks } from "./Controls";
+import { InitiativeBlocks } from "./InitiativeBlocks";
+import { createCallbacksUsingDispatch } from "./InitiativeBlock";
 
 const initialState = getInitialState();
 
@@ -31,7 +31,7 @@ function Application() {
 }
 
 function getInitialState(): State {
-  const stored = localStorage.getItem('state');
+  const stored = localStorage.getItem("state");
   if (stored) {
     // If the state is stored, use it.
     return JSON.parse(stored) as State;

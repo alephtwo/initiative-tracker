@@ -1,7 +1,7 @@
-import { CssBaseline, colors as Colors, createTheme, ThemeProvider } from '@mui/material';
-import * as React from 'react';
-import { createRoot } from 'react-dom/client';
-import Application from './components/Application';
+import { CssBaseline, colors as Colors, createTheme, ThemeProvider } from "@mui/material";
+import * as React from "react";
+import { createRoot } from "react-dom/client";
+import Application from "./components/Application";
 
 const theme = createTheme({
   palette: {
@@ -17,5 +17,5 @@ const app = (
   </ThemeProvider>
 );
 
-const root = createRoot(document.getElementById('app') as HTMLDivElement);
+const root = createRoot(document.getElementById("app") as HTMLDivElement);
 root.render(app);
